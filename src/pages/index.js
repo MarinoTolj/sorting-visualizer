@@ -7,7 +7,7 @@ export default function index() {
   return (
     <div className={styles.header}>
       {/* Sorting Visualizer */}
-      <Header />
+      {/* <Header /> */}
       <SortingVisualizer />
     </div>
   );
