@@ -3,5 +3,5 @@ module.exports = {
     siteUrl: "https://www.yourdomain.tld",
     title: "Sorting Visualizer",
   },
-  plugins: [],
+  plugins: ["gatsby-plugin-postcss"],
 };
