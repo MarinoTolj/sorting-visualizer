@@ -1,34 +1,34 @@
 import React from "react";
 import * as styles from "../styles/sortingVisualizer.module.css";
 import { useState, useEffect } from "react";
-import BubbleSort from "../algorithms/bubbleSort";
 import ButtonComponent from "./button";
-import { Container } from "react-bootstrap";
+import AlgorithmChoice from "../algorithms/algorithmChoice";
+import ArrayList from "./arrayList";
 
 const MIN_VALUE_OF_ARRAY = 5;
 const MAX_VALUE_OF_ARRAY = 300;
 const ARRAY_SIZE_MIN = 5;
 const ARRAY_SIZE_MAX = 125;
+export const COLOR_ARRAY = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
-  const [arraySize, setArraySize] = useState(100);
+  const [arraySize, setArraySize] = useState(ARRAY_SIZE_MAX);
+  const [sortSpeed, setSortSpeed] = useState(10);
   const [array, setArray] = useState(GenerateRandomArray());
-
+  const [description, setDescription] = useState("");
+  const [isRunning, setIsRunning] = useState(false);
   const buttons = [
     {
-      variant: "primary",
-      onClickEvent: handleReset,
-      text: "Reset",
-    },
-    {
       variant: "secondary",
-      onClickEvent: handleBubble,
       text: "Bubble sort",
     },
     {
       variant: "secondary",
-      onClickEvent: handleBubble,
-      text: "merge sort",
+      text: "Insertion sort",
+    },
+    {
+      variant: "secondary",
+      text: "Selection sort",
     },
   ];
 
@@ -36,16 +36,28 @@ export default function SortingVisualizer() {
     setArraySize(parseInt(e.target.value));
   };
 
+  const handleSpeed = (e) => {
+    setSortSpeed(parseInt(e.target.value));
+  };
+
   useEffect(() => {
     handleReset();
   }, [arraySize]);
 
-  function handleBubble() {
-    BubbleSort(array, setArray);
-  }
+  const handleAlgorithmChoice = (e) => {
+    console.log(e.target);
+    AlgorithmChoice(
+      array,
+      setArray,
+      setIsRunning,
+      setDescription,
+      sortSpeed,
+      e.target.value
+    );
+  };
 
   function handleReset() {
-    console.log(navigator.userAgent);
+    console.log(window.innerWidth);
     setArray(GenerateRandomArray());
   }
 
@@ -57,7 +69,7 @@ export default function SortingVisualizer() {
           Math.random() * (MAX_VALUE_OF_ARRAY - MIN_VALUE_OF_ARRAY + 1) +
             MIN_VALUE_OF_ARRAY
         ),
-        color: "blue",
+        color: COLOR_ARRAY,
       });
     }
     return array;
@@ -66,18 +78,27 @@ export default function SortingVisualizer() {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>Sorting Visualizer</h1>
+
       <div className={styles.btn}>
+        <ButtonComponent
+          variant="primary"
+          text={"Reset"}
+          onClick={handleReset}
+          disabled={isRunning}
+        />
         {buttons.map((button, index) => (
           <ButtonComponent
             key={index}
             variant={button.variant}
-            onClick={button.onClickEvent}
+            onClick={handleAlgorithmChoice}
+            value={button.text}
             text={button.text}
             size={button.size}
+            disabled={isRunning}
           />
         ))}
       </div>
-      <p>Change the size of array</p>
+      <h2>Change the size of array</h2>
       <input
         type="range"
         min={ARRAY_SIZE_MIN}
@@ -85,21 +106,20 @@ export default function SortingVisualizer() {
         value={arraySize}
         onChange={handleChange}
         className={styles.slider}
+        disabled={isRunning}
       />
-
-      <div className={styles.arraycontainer}>
-        {array.map((element, index) => (
-          <div
-            key={index}
-            className={styles.arrayelement}
-            style={{
-              width: "4px",
-              height: `${element.value}px`,
-              backgroundColor: `${element.color}`,
-            }}
-          ></div>
-        ))}
-      </div>
+      <br />
+      <h2>Change the speed of array</h2>
+      <input
+        type="range"
+        min={5}
+        max={1000}
+        value={sortSpeed}
+        onChange={handleSpeed}
+        className={styles.slider}
+        disabled={isRunning}
+      />
+      <ArrayList array={array} description={description} styles={styles} />
     </div>
   );
 }

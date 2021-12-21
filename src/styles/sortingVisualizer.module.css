@@ -4,6 +4,10 @@
   place-items: center;
 }
 
+.container > h2 {
+  font-size: 1em;
+}
+
 .arraycontainer {
   padding-top: 5px;
   padding-left: 50px;
@@ -24,6 +28,17 @@
   width: 2px;
   display: inline-block;
   margin: 0 1px;
+}
+
+.section {
+  word-wrap: break;
+  border: 2px solid blue;
+}
+
+.sectioncontainer {
+  position: absolute;
+  max-width: 1000px;
+  left: 20%;
 }
 
 .slider {
