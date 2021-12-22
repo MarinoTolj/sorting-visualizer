@@ -58,5 +58,33 @@ export const algorithmsDescription = [
         </a>
       </p>
     ),
+
+    MergeSort: (
+      <p>
+        In computer science, merge sort (also commonly spelled as mergesort) is
+        an efficient, general-purpose, and comparison-based sorting algorithm.
+        Most implementations produce a stable sort, which means that the order
+        of equal elements is the same in the input and output. Merge sort is a
+        divide and conquer algorithm that was invented by John von Neumann in
+        1945.[2] A detailed description and analysis of bottom-up merge sort
+        appeared in a report by Goldstine and von Neumann as early as 1948.[3]
+      </p>
+    ),
+
+    QuickSort: (
+      <p>
+        Quicksort is an in-place sorting algorithm. Developed by British
+        computer scientist Tony Hoare in 1959[1] and published in 1961,[2] it is
+        still a commonly used algorithm for sorting. When implemented well, it
+        can be somewhat faster than merge sort and about two or three times
+        faster than heapsort.[3][contradictory] Quicksort is a
+        divide-and-conquer algorithm. It works by selecting a 'pivot' element
+        from the array and partitioning the other elements into two sub-arrays,
+        according to whether they are less than or greater than the pivot. For
+        this reason, it is sometimes called partition-exchange sort.[4] The
+        sub-arrays are then sorted recursively. This can be done in-place,
+        requiring small additional amounts of memory to perform the sorting.
+      </p>
+    ),
   },
 ];

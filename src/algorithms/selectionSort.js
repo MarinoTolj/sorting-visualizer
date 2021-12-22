@@ -1,4 +1,4 @@
-import { sleep } from "./bubbleSort";
+import { sleep } from "../components/sortingVisualizer";
 import { COLOR_ARRAY } from "../components/sortingVisualizer";
 
 export default async function SelectionSort(

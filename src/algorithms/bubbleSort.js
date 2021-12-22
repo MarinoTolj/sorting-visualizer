@@ -1,4 +1,5 @@
 import { COLOR_ARRAY } from "../components/sortingVisualizer";
+import { sleep } from "../components/sortingVisualizer";
 
 export default async function BubbleSort(
   array,
@@ -22,14 +23,11 @@ export default async function BubbleSort(
         swapped = true;
         setArray([...array]);
         await sleep(sortSpeed);
+
         array[j].color = COLOR_ARRAY;
         array[j + 1].color = COLOR_ARRAY;
       }
     }
   } while (swapped);
   setIsRunning(false);
-}
-
-export function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }

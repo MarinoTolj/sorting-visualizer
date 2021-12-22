@@ -13,10 +13,11 @@ export const COLOR_ARRAY = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
   const [arraySize, setArraySize] = useState(ARRAY_SIZE_MAX);
-  const [sortSpeed, setSortSpeed] = useState(10);
+  const [sortSpeed, setSortSpeed] = useState(5);
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
   const [isRunning, setIsRunning] = useState(false);
+  const [h1, setH1] = useState("");
   const buttons = [
     {
       variant: "secondary",
@@ -29,6 +30,14 @@ export default function SortingVisualizer() {
     {
       variant: "secondary",
       text: "Selection sort",
+    },
+    {
+      variant: "secondary",
+      text: "Merge sort",
+    },
+    {
+      variant: "secondary",
+      text: "Quick sort",
     },
   ];
 
@@ -45,7 +54,6 @@ export default function SortingVisualizer() {
   }, [arraySize]);
 
   const handleAlgorithmChoice = (e) => {
-    console.log(e.target);
     AlgorithmChoice(
       array,
       setArray,
@@ -57,7 +65,6 @@ export default function SortingVisualizer() {
   };
 
   function handleReset() {
-    console.log(window.innerWidth);
     setArray(GenerateRandomArray());
   }
 
@@ -120,6 +127,11 @@ export default function SortingVisualizer() {
         disabled={isRunning}
       />
       <ArrayList array={array} description={description} styles={styles} />
+      {h1 && h1}
     </div>
   );
+}
+
+export function sleep(sortSpeed) {
+  return new Promise((resolve) => setTimeout(resolve, sortSpeed));
 }

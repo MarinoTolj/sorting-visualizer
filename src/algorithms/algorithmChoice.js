@@ -1,6 +1,8 @@
 import BubbleSort from "./bubbleSort";
 import InsertionSort from "./insertionSort";
 import SelectionSort from "./selectionSort";
+import MergeSort from "./mergeSort";
+import QuickSort from "./quickSort";
 import { algorithmsDescription } from "./description";
 
 export default function AlgorithmChoice(
@@ -23,6 +25,14 @@ export default function AlgorithmChoice(
     case "Selection sort":
       setDescription(algorithmsDescription[0].SelectionSort);
       SelectionSort(array, setArray, setIsRunning, sortSpeed);
+      break;
+    case "Merge sort":
+      setDescription(algorithmsDescription[0].MergeSort);
+      MergeSort(array, setArray, setIsRunning, sortSpeed);
+      break;
+    case "Quick sort":
+      setDescription(algorithmsDescription[0].QuickSort);
+      QuickSort(array, setArray, setIsRunning, sortSpeed);
       break;
     default:
       break;
