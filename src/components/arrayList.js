@@ -4,7 +4,7 @@ export default function ArrayList({ array, description, styles }) {
   const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
   const [arrayWidth, setArrayWidth] = useState("");
   useEffect(() => {
-    console.log(deviceWidth >= 1150);
+    /* console.log(deviceWidth >= 1150); */
 
     if (deviceWidth >= 1425) {
       setArrayWidth("9");
@@ -19,7 +19,7 @@ export default function ArrayList({ array, description, styles }) {
           key={index}
           className={styles.arrayelement}
           style={{
-            width: `${arrayWidth}px`,
+            width: `3px`,
             height: `${element.value}px`,
             backgroundColor: `${element.color}`,
           }}

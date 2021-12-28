@@ -1,6 +1,6 @@
 import React from "react";
-import * as styles from "../styles/header.module.css";
-import Button from "react-bootstrap/Button";
+/* import * as styles from "../styles/header.module.css";
+import Button from "react-bootstrap/Button"; */
 
 export default function Header() {
   return (

@@ -8,7 +8,7 @@ import ArrayList from "./arrayList";
 const MIN_VALUE_OF_ARRAY = 5;
 const MAX_VALUE_OF_ARRAY = 300;
 const ARRAY_SIZE_MIN = 5;
-const ARRAY_SIZE_MAX = 125;
+const ARRAY_SIZE_MAX = 256;
 export const COLOR_ARRAY = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
@@ -17,7 +17,7 @@ export default function SortingVisualizer() {
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
   const [isRunning, setIsRunning] = useState(false);
-  const [h1, setH1] = useState("");
+  /* const [h1, setH1] = useState(""); */
   const buttons = [
     {
       variant: "secondary",
@@ -127,7 +127,7 @@ export default function SortingVisualizer() {
         disabled={isRunning}
       />
       <ArrayList array={array} description={description} styles={styles} />
-      {h1 && h1}
+      {/* {h1 && h1} */}
     </div>
   );
 }

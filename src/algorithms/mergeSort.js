@@ -8,11 +8,67 @@ export default async function MergeSort(
   sortSpeed
 ) {
   let auxiliaryArray = [...array];
-  bottomUpSort(auxiliaryArray, auxiliaryArray.length, setArray);
-  setArray(auxiliaryArray);
+  var width, i;
+  const n = auxiliaryArray.length;
+  var items = [...auxiliaryArray];
+
+  var currentSort = [],
+    j;
+  setIsRunning(true);
+  /* bottomUpSort(auxiliaryArray, auxiliaryArray.length, setArray); */
+  for (width = 1; width < n; width = width * 2) {
+    for (i = 0; i < n; i = i + 2 * width) {
+      /* bottomUpMerge(
+        auxiliaryArray,
+        i,
+        Math.min(i + width, n),
+        Math.min(i + 2 * width, n),
+        setArray
+      ); */
+      var left = i;
+      var right = Math.min(i + width, n);
+      var end = Math.min(i + 2 * width, n);
+      var k = left;
+      var m = right;
+
+      var currentSort = [],
+        j;
+      for (j = left; j < end; j++) {
+        /* setArray([...items]); */
+        if (k < right && (m >= end || items[k].value < items[m].value)) {
+          items[k].color = "red";
+          items[m - 1].color = "red";
+          currentSort.push(items[k]);
+          setArray([...items]);
+          await sleep(sortSpeed);
+          items[k].color = COLOR_ARRAY;
+          items[m - 1].color = COLOR_ARRAY;
+          k++;
+        } else {
+          items[k].color = "red";
+          items[m].color = "red";
+          currentSort.push(items[m]);
+          setArray([...items]);
+          await sleep(sortSpeed);
+          items[m].color = COLOR_ARRAY;
+          items[k].color = COLOR_ARRAY;
+          m++;
+        }
+
+        /* setArray([...items]); */
+      }
+
+      currentSort.map(function (item, i) {
+        items[left + i] = item;
+      });
+    }
+  }
+
+  setArray(currentSort);
+  setIsRunning(false);
 }
 
-async function bottomUpSort(items, n, setArray) {
+function bottomUpSort(items, n, setArray) {
   var width, i;
 
   for (width = 1; width < n; width = width * 2) {
@@ -46,12 +102,13 @@ async function bottomUpMerge(items, left, right, end, setArray) {
       items[m].color = "red";
       currentSort.push(items[m]);
       /* setArray([...items]); */
-      /* await sleep(20); */
+      await sleep(20);
       items[m].color = "blue";
       m++;
     }
   }
-  /* setArray(currentSort); */
+  console.log(currentSort);
+  setArray(currentSort);
   currentSort.map(function (item, i) {
     items[left + i] = item;
   });
