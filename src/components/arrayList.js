@@ -25,11 +25,11 @@ export default function ArrayList({ array, description, styles }) {
           }}
         ></div>
       ))}
-      <div className={styles.sectioncontainer}>
-        {description && (
-          <section className={styles.section}>{description}</section>
-        )}
-      </div>
+      {description && (
+        <div className={styles.sectioncontainer}>
+          <section>{description}</section>
+        </div>
+      )}
     </div>
   );
 }

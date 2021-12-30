@@ -1,53 +1,23 @@
 import React from "react";
 import * as styles from "../styles/sortingVisualizer.module.css";
 import { useState, useEffect } from "react";
-import ButtonComponent from "./button";
+
 import AlgorithmChoice from "../algorithms/algorithmChoice";
 import ArrayList from "./arrayList";
+import Inputs from "./inputs";
+import Buttons from "./buttons";
 
 const MIN_VALUE_OF_ARRAY = 5;
 const MAX_VALUE_OF_ARRAY = 300;
-const ARRAY_SIZE_MIN = 5;
-const ARRAY_SIZE_MAX = 256;
+
 export const COLOR_ARRAY = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
-  const [arraySize, setArraySize] = useState(ARRAY_SIZE_MAX);
+  const [arraySize, setArraySize] = useState(128);
   const [sortSpeed, setSortSpeed] = useState(5);
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
   const [isRunning, setIsRunning] = useState(false);
-  /* const [h1, setH1] = useState(""); */
-  const buttons = [
-    {
-      variant: "secondary",
-      text: "Bubble sort",
-    },
-    {
-      variant: "secondary",
-      text: "Insertion sort",
-    },
-    {
-      variant: "secondary",
-      text: "Selection sort",
-    },
-    {
-      variant: "secondary",
-      text: "Merge sort",
-    },
-    {
-      variant: "secondary",
-      text: "Quick sort",
-    },
-  ];
-
-  const handleChange = (e) => {
-    setArraySize(parseInt(e.target.value));
-  };
-
-  const handleSpeed = (e) => {
-    setSortSpeed(parseInt(e.target.value));
-  };
 
   useEffect(() => {
     handleReset();
@@ -62,6 +32,15 @@ export default function SortingVisualizer() {
       sortSpeed,
       e.target.value
     );
+  };
+
+  const worstCaseArray = () => {
+    let array = [];
+    for (let i = 0; i < arraySize; i++) {
+      array.push({ value: MAX_VALUE_OF_ARRAY - i, color: COLOR_ARRAY });
+    }
+
+    setArray(array);
   };
 
   function handleReset() {
@@ -85,49 +64,21 @@ export default function SortingVisualizer() {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>Sorting Visualizer</h1>
+      <Buttons
+        handleReset={handleReset}
+        isRunning={isRunning}
+        handleAlgorithmChoice={handleAlgorithmChoice}
+        worstCaseArray={worstCaseArray}
+      />
+      <Inputs
+        arraySize={arraySize}
+        setArraySize={setArraySize}
+        sortSpeed={sortSpeed}
+        setSortSpeed={setSortSpeed}
+        isRunning={isRunning}
+      />
 
-      <div className={styles.btn}>
-        <ButtonComponent
-          variant="primary"
-          text={"Reset"}
-          onClick={handleReset}
-          disabled={isRunning}
-        />
-        {buttons.map((button, index) => (
-          <ButtonComponent
-            key={index}
-            variant={button.variant}
-            onClick={handleAlgorithmChoice}
-            value={button.text}
-            text={button.text}
-            size={button.size}
-            disabled={isRunning}
-          />
-        ))}
-      </div>
-      <h2>Change the size of array</h2>
-      <input
-        type="range"
-        min={ARRAY_SIZE_MIN}
-        max={ARRAY_SIZE_MAX}
-        value={arraySize}
-        onChange={handleChange}
-        className={styles.slider}
-        disabled={isRunning}
-      />
-      <br />
-      <h2>Change the speed of array</h2>
-      <input
-        type="range"
-        min={5}
-        max={1000}
-        value={sortSpeed}
-        onChange={handleSpeed}
-        className={styles.slider}
-        disabled={isRunning}
-      />
       <ArrayList array={array} description={description} styles={styles} />
-      {/* {h1 && h1} */}
     </div>
   );
 }

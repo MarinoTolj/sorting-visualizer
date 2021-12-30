@@ -19,6 +19,8 @@ export default async function QuickSort(
   end[0] = n;
   let auxiliaryArray = [...array];
 
+  setIsRunning(true);
+
   while (i >= 0) {
     L = beg[i];
     R = end[i] - 1;
@@ -63,5 +65,7 @@ export default async function QuickSort(
       i--;
     }
   }
+
+  setIsRunning(false);
   setArray([...auxiliaryArray]);
 }
