@@ -4,6 +4,9 @@ import * as styles from "../styles/input.module.css";
 const ARRAY_SIZE_MIN = 5;
 const ARRAY_SIZE_MAX = 256;
 
+const SORT_SPEED_MIN = 5;
+const SORT_SPEED_MAX = 1000;
+
 const Inputs = ({
   arraySize,
   setArraySize,
@@ -39,17 +42,17 @@ const Inputs = ({
       <br />
       <div className={styles.input}>
         <h2>Change the speed of sorting</h2>
-        5ms
+        {SORT_SPEED_MIN}ms
         <input
           type="range"
-          min={5}
-          max={1000}
+          min={SORT_SPEED_MIN}
+          max={SORT_SPEED_MAX}
           value={sortSpeed}
           onChange={handleSpeed}
           className={styles.slider}
           disabled={isRunning}
         />
-        1000ms
+        {SORT_SPEED_MAX}ms
         <br />
         {sortSpeed}ms
       </div>

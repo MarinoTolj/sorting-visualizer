@@ -63,7 +63,7 @@ export default function SortingVisualizer() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>Sorting Visualizer</h1>
+      <h1>Sorting Visualizer</h1>
       <Buttons
         handleReset={handleReset}
         isRunning={isRunning}

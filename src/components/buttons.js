@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonComponent from "./button";
 import * as styles from "../styles/sortingVisualizer.module.css";
+import Button from "react-bootstrap/Button";
 
 const Buttons = ({
   handleReset,
@@ -36,28 +36,22 @@ const Buttons = ({
   ];
   return (
     <div className={styles.btn}>
-      <ButtonComponent
-        variant="primary"
-        text={"Reset"}
-        onClick={handleReset}
-        disabled={isRunning}
-      />
-      <ButtonComponent
-        variant="danger"
-        text={"Worst Case"}
-        onClick={worstCaseArray}
-        disabled={isRunning}
-      />
+      <Button variant="primary" onClick={handleReset} disabled={isRunning}>
+        Reset
+      </Button>
+      <Button variant="danger" onClick={worstCaseArray} disabled={isRunning}>
+        Worst Case
+      </Button>
       {buttons.map((button, index) => (
-        <ButtonComponent
+        <Button
           key={index}
           variant={button.variant}
           onClick={handleAlgorithmChoice}
           value={button.text}
-          text={button.text}
-          size={button.size}
           disabled={isRunning}
-        />
+        >
+          {button.text}
+        </Button>
       ))}
     </div>
   );

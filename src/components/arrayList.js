@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-export default function ArrayList({ array, description, styles }) {
+import * as styles from "../styles/sortingVisualizer.module.css";
+
+export default function ArrayList({ array, description }) {
   const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
   const [arrayWidth, setArrayWidth] = useState("");
   useEffect(() => {
@@ -12,6 +14,7 @@ export default function ArrayList({ array, description, styles }) {
       setArrayWidth("5");
     }
   }, [window.innerWidth]);
+
   return (
     <div className={styles.arraycontainer}>
       {array.map((element, index) => (
