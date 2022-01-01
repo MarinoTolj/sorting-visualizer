@@ -5,8 +5,11 @@
 }
 
 .arraycontainer {
-  padding-top: 5px;
-  padding-left: 50px;
+  /* padding-top: 5px;
+  padding-left: 50px; */
+  left: 16.7%;
+  margin-top: 5px;
+  height: 300px;
 }
 
 .btn {
@@ -17,12 +20,11 @@
 
 .arrayelement {
   display: inline-block;
-  margin: 0 1px;
+  margin-right: 1px;
 }
 
 .sectioncontainer {
   position: absolute;
-  max-width: 1000px;
-  left: 30%;
+  max-width: 1280px;
   border: 2px solid rgba(13, 110, 253, 255);
 }

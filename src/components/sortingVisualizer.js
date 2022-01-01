@@ -13,7 +13,7 @@ const MAX_VALUE_OF_ARRAY = 300;
 export const COLOR_ARRAY = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
-  const [arraySize, setArraySize] = useState(128);
+  const [arraySize, setArraySize] = useState(5);
   const [sortSpeed, setSortSpeed] = useState(5);
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
@@ -78,7 +78,11 @@ export default function SortingVisualizer() {
         isRunning={isRunning}
       />
 
-      <ArrayList array={array} description={description} styles={styles} />
+      <ArrayList
+        array={array}
+        description={description}
+        arraySize={arraySize}
+      />
     </div>
   );
 }

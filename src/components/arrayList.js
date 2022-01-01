@@ -1,28 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import * as styles from "../styles/sortingVisualizer.module.css";
+import useResizeObserver from "use-resize-observer";
 
-export default function ArrayList({ array, description }) {
-  const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
-  const [arrayWidth, setArrayWidth] = useState("");
+export default function ArrayList({ array, description, arraySize }) {
+  const { ref, width = 1, height = 1 } = useResizeObserver();
+  const [arrayWidth, setArrayWidth] = useState(3);
+
   useEffect(() => {
-    /* console.log(deviceWidth >= 1150); */
-
-    if (deviceWidth >= 1425) {
-      setArrayWidth("9");
-    } else if (deviceWidth >= 900) {
-      setArrayWidth("5");
+    console.log(window.innerWidth);
+    if (window.innerWidth > 1280) {
+      setArrayWidth((1280 - arraySize) / arraySize);
+    } else {
+      setArrayWidth((window.innerWidth - arraySize - 10) / arraySize);
     }
-  }, [window.innerWidth]);
+  }, [arraySize, window.innerWidth]);
 
   return (
-    <div className={styles.arraycontainer}>
+    <div ref={ref} className={styles.arraycontainer}>
       {array.map((element, index) => (
         <div
           key={index}
           className={styles.arrayelement}
           style={{
-            width: `3px`,
+            width: `${arrayWidth}px`,
             height: `${element.value}px`,
             backgroundColor: `${element.color}`,
           }}
