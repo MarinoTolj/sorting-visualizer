@@ -120,4 +120,12 @@ export const algorithmsDescription = {
       </a>
     </p>
   ),
+  RadixSort: (
+    <p>
+      Radix
+      <a href="https://en.wikipedia.org/wiki/Radix_sort">
+        https://en.wikipedia.org/wiki/Radix_sort
+      </a>
+    </p>
+  ),
 };

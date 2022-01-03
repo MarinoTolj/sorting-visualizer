@@ -8,7 +8,7 @@ export default function ArrayList({ array, description, arraySize }) {
   const [arrayWidth, setArrayWidth] = useState(3);
 
   useEffect(() => {
-    console.log(window.innerWidth);
+    /* console.log(window.innerWidth); */
     if (window.innerWidth > 1280) {
       setArrayWidth((1280 - arraySize) / arraySize);
     } else {

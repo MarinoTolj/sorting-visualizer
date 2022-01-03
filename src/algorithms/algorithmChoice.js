@@ -4,6 +4,7 @@ import SelectionSort from "./selectionSort";
 import MergeSort from "./mergeSort";
 import QuickSort from "./quickSort";
 import HeapSort from "./heapSort";
+import RadixSort from "./radixSort";
 import { algorithmsDescription } from "./description";
 
 export default function AlgorithmChoice(
@@ -38,6 +39,10 @@ export default function AlgorithmChoice(
     case "Heap sort":
       setDescription(algorithmsDescription.HeapSort);
       HeapSort(array, setArray, setIsRunning, sortSpeed);
+      break;
+    case "Radix sort":
+      setDescription(algorithmsDescription.RadixSort);
+      RadixSort(array, setArray, setIsRunning, sortSpeed);
       break;
     default:
       break;
