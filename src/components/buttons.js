@@ -33,7 +33,15 @@ const Buttons = ({
       variant: "secondary",
       text: "Heap sort",
     },
+    {
+      variant: "secondary",
+      text: "Bucket sort",
+    },
     { variant: "secondary", text: "Radix sort" },
+    {
+      variant: "secondary",
+      text: "Counting sort",
+    },
   ];
   return (
     <div className={styles.btn}>

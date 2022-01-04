@@ -19,8 +19,8 @@ export default async function RadixSort(
       if (num !== undefined) {
         buckets[num].push(array[j]);
         array[j].color = "red";
-        setArray([...array, num]);
-        await sleep(5);
+        setArray([...array]);
+        await sleep(sortSpeed);
         array[j].color = COLOR_ARRAY;
       }
     }

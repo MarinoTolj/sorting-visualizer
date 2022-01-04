@@ -120,11 +120,68 @@ export const algorithmsDescription = {
       </a>
     </p>
   ),
+  BucketSort: (
+    <p>
+      Bucket sort, or bin sort, is a sorting algorithm that works by
+      distributing the elements of an array into a number of buckets. Each
+      bucket is then sorted individually, either using a different sorting
+      algorithm, or by recursively applying the bucket sorting algorithm. It is
+      a distribution sort, a generalization of pigeonhole sort, and is a cousin
+      of radix sort in the most-to-least significant digit flavor. Bucket sort
+      can be implemented with comparisons and therefore can also be considered a
+      comparison sort algorithm. The computational complexity depends on the
+      algorithm used to sort each bucket, the number of buckets to use, and
+      whether the input is uniformly distributed.
+      <br /> Worst-case time performance O(n*logn),
+      <br /> Worst-case space complexity O(n+n<sup>2</sup>/k+k),
+      <br /> where k is the number of buckets
+      <br /> Worst-case space complexity O(n+k)
+      <br />
+      <a href="https://en.wikipedia.org/wiki/Bucket_sort">
+        https://en.wikipedia.org/wiki/Bucket_sort
+      </a>
+    </p>
+  ),
   RadixSort: (
     <p>
-      Radix
+      In computer science, radix sort is a non-comparative sorting algorithm. It
+      avoids comparison by creating and distributing elements into buckets
+      according to their radix. For elements with more than one significant
+      digit, this bucketing process is repeated for each digit, while preserving
+      the ordering of the prior step, until all digits have been considered. For
+      this reason, radix sort has also been called bucket sort and digital sort.
+      Radix sort can be applied to data that can be sorted lexicographically, be
+      they integers, words, punch cards, playing cards, or the mail.
+      <br /> Worst-case time performance O(w*n),
+      <br /> Worst-case space complexity O(w+n)
+      <br />
+      where n is the number of keys, and w is key length
+      <br />
       <a href="https://en.wikipedia.org/wiki/Radix_sort">
         https://en.wikipedia.org/wiki/Radix_sort
+      </a>
+    </p>
+  ),
+
+  CountingSort: (
+    <p>
+      In computer science, counting sort is an algorithm for sorting a
+      collection of objects according to keys that are small positive integers;
+      that is, it is an integer sorting algorithm. It operates by counting the
+      number of objects that possess distinct key values, and applying prefix
+      sum on those counts to determine the positions of each key value in the
+      output sequence. Its running time is linear in the number of items and the
+      difference between the maximum key value and the minimum key value, so it
+      is only suitable for direct use in situations where the variation in keys
+      is not significantly greater than the number of items. It is often used as
+      a subroutine in radix sort, another sorting algorithm, which can handle
+      larger keys more efficiently.
+      <br /> Worst-case time performance O(n+k),
+      <br /> where k is the range of the non-negative key values.
+      <br /> Worst-case space complexity O(n+k)
+      <br />
+      <a href="https://en.wikipedia.org/wiki/Counting_sort">
+        https://en.wikipedia.org/wiki/Counting_sort
       </a>
     </p>
   ),

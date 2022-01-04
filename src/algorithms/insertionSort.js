@@ -9,8 +9,10 @@ export default async function InsertionSort(
 ) {
   let temp = 0;
   setIsRunning(true);
+  console.log("insertion");
   for (let i = 1; i < array.length; i++) {
     let j = i;
+
     while (j > 0 && array[j - 1].value > array[j].value) {
       array[j - 1].color = "red";
 
@@ -27,5 +29,6 @@ export default async function InsertionSort(
       j--;
     }
   }
+  setArray([...array]);
   setIsRunning(false);
 }

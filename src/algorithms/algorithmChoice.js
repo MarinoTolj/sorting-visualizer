@@ -5,6 +5,8 @@ import MergeSort from "./mergeSort";
 import QuickSort from "./quickSort";
 import HeapSort from "./heapSort";
 import RadixSort from "./radixSort";
+import BucketSort from "./bucketSort";
+import CountingSort from "./countingSort";
 import { algorithmsDescription } from "./description";
 
 export default function AlgorithmChoice(
@@ -43,6 +45,14 @@ export default function AlgorithmChoice(
     case "Radix sort":
       setDescription(algorithmsDescription.RadixSort);
       RadixSort(array, setArray, setIsRunning, sortSpeed);
+      break;
+    case "Bucket sort":
+      setDescription(algorithmsDescription.BucketSort);
+      BucketSort(array, setArray, setIsRunning, sortSpeed);
+      break;
+    case "Counting sort":
+      setDescription(algorithmsDescription.CountingSort);
+      CountingSort(array, setArray, setIsRunning, sortSpeed);
       break;
     default:
       break;
