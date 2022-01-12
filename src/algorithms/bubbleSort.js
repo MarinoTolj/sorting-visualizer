@@ -20,6 +20,7 @@ export default async function BubbleSort(
         temp = array[j].value;
         array[j].value = array[j + 1].value;
         array[j + 1].value = temp;
+
         swapped = true;
         setArray([...array]);
         await sleep(sortSpeed);

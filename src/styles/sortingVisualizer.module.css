@@ -27,4 +27,5 @@
   position: absolute;
   max-width: 1280px;
   border: 2px solid rgba(13, 110, 253, 255);
+  border-radius: 5px;
 }

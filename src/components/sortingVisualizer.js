@@ -51,13 +51,31 @@ export default function SortingVisualizer() {
     let array = [];
     for (let i = 0; i < arraySize; i++) {
       array.push({
-        value: Math.floor(
-          Math.random() * (MAX_VALUE_OF_ARRAY - MIN_VALUE_OF_ARRAY + 1) +
-            MIN_VALUE_OF_ARRAY
-        ),
+        value: MAX_VALUE_OF_ARRAY - i,
         color: COLOR_ARRAY,
       });
     }
+    array = shuffle(array);
+    return array;
+  }
+
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
     return array;
   }
 

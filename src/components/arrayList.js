@@ -10,7 +10,7 @@ export default function ArrayList({ array, description, arraySize }) {
   useEffect(() => {
     /* console.log(window.innerWidth); */
     if (window.innerWidth > 1280) {
-      setArrayWidth((1280 - arraySize) / arraySize);
+      setArrayWidth((1280 - arraySize - 10) / arraySize);
     } else {
       setArrayWidth((window.innerWidth - arraySize - 10) / arraySize);
     }
@@ -30,9 +30,7 @@ export default function ArrayList({ array, description, arraySize }) {
         ></div>
       ))}
       {description && (
-        <div className={styles.sectioncontainer}>
-          <section>{description}</section>
-        </div>
+        <section className={styles.sectioncontainer}>{description}</section>
       )}
     </div>
   );
