@@ -10,7 +10,7 @@ import Buttons from "./buttons";
 const MIN_VALUE_OF_ARRAY = 5;
 const MAX_VALUE_OF_ARRAY = 300;
 
-export const COLOR_ARRAY = "rgba(13,110,253,255)";
+export const COLUMNS_COLOR = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
   const [arraySize, setArraySize] = useState(256);
@@ -37,7 +37,7 @@ export default function SortingVisualizer() {
   const worstCaseArray = () => {
     let array = [];
     for (let i = 0; i < arraySize; i++) {
-      array.push({ value: MAX_VALUE_OF_ARRAY - i, color: COLOR_ARRAY });
+      array.push({ value: MAX_VALUE_OF_ARRAY - i, color: COLUMNS_COLOR });
     }
 
     setArray(array);
@@ -51,8 +51,10 @@ export default function SortingVisualizer() {
     let array = [];
     for (let i = 0; i < arraySize; i++) {
       array.push({
-        value: MAX_VALUE_OF_ARRAY - i,
-        color: COLOR_ARRAY,
+        value:
+          Math.random() * (MAX_VALUE_OF_ARRAY - MIN_VALUE_OF_ARRAY) +
+          MIN_VALUE_OF_ARRAY,
+        color: COLUMNS_COLOR,
       });
     }
     array = shuffle(array);

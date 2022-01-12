@@ -1,4 +1,4 @@
-import { COLOR_ARRAY } from "../components/sortingVisualizer";
+import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
 export default async function CountingSort(
@@ -29,7 +29,7 @@ export default async function CountingSort(
   } */
 
   for (i; i <= maxValue; i++) {
-    /* count[i] = { value: 0, color: COLOR_ARRAY }; */
+    /* count[i] = { value: 0, color: COLUMNS_COLOR }; */
     count[i] = 0;
   }
 
@@ -41,7 +41,7 @@ export default async function CountingSort(
 
     setArray([...array, i]);
     await sleep(sortSpeed);
-    array[i].color = COLOR_ARRAY;
+    array[i].color = COLUMNS_COLOR;
   }
 
   for (i = minValue; i <= maxValue; i++) {
@@ -52,7 +52,7 @@ export default async function CountingSort(
       count[i]--;
       setArray([...array]);
       await sleep(sortSpeed);
-      array[j - 1].color = COLOR_ARRAY;
+      array[j - 1].color = COLUMNS_COLOR;
     }
   }
 

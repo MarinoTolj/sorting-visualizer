@@ -1,4 +1,4 @@
-import { COLOR_ARRAY } from "../components/sortingVisualizer";
+import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
 export default async function QuickSort(
@@ -36,8 +36,8 @@ export default async function QuickSort(
 
           setArray([...auxiliaryArray]);
           await sleep(sortSpeed);
-          auxiliaryArray[L].color = COLOR_ARRAY;
-          auxiliaryArray[R].color = COLOR_ARRAY;
+          auxiliaryArray[L].color = COLUMNS_COLOR;
+          auxiliaryArray[R].color = COLUMNS_COLOR;
           R--;
         }
         if (L < R) {
@@ -49,8 +49,8 @@ export default async function QuickSort(
 
           setArray([...auxiliaryArray]);
           await sleep(sortSpeed);
-          auxiliaryArray[L].color = COLOR_ARRAY;
-          auxiliaryArray[R].color = COLOR_ARRAY;
+          auxiliaryArray[L].color = COLUMNS_COLOR;
+          auxiliaryArray[R].color = COLUMNS_COLOR;
           L++;
         }
         if (L < R) {

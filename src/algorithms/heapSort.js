@@ -1,4 +1,4 @@
-import { COLOR_ARRAY } from "../components/sortingVisualizer";
+import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
 export default async function HeapSort(
@@ -48,8 +48,8 @@ export default async function HeapSort(
       setArray([...array]);
       await sleep(sortSpeed);
 
-      array[j].color = COLOR_ARRAY;
-      array[index].color = COLOR_ARRAY;
+      array[j].color = COLUMNS_COLOR;
+      array[index].color = COLUMNS_COLOR;
 
       j = index;
     }
@@ -69,8 +69,8 @@ export default async function HeapSort(
 
     setArray([...array]);
     await sleep(sortSpeed);
-    array[0].color = COLOR_ARRAY;
-    array[lastElement].color = COLOR_ARRAY;
+    array[0].color = COLUMNS_COLOR;
+    array[lastElement].color = COLUMNS_COLOR;
 
     /* heapify(array, 0, lastElement, sortSpeed); */
     let index;
@@ -112,8 +112,8 @@ export default async function HeapSort(
       setArray([...array]);
       await sleep(sortSpeed);
 
-      array[j].color = COLOR_ARRAY;
-      array[index].color = COLOR_ARRAY;
+      array[j].color = COLUMNS_COLOR;
+      array[index].color = COLUMNS_COLOR;
 
       j = index;
     }

@@ -1,4 +1,4 @@
-import { COLOR_ARRAY } from "../components/sortingVisualizer";
+import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
 export default async function MergeSort(
@@ -41,8 +41,8 @@ export default async function MergeSort(
           currentSort.push(items[k]);
           setArray([...items]);
           await sleep(sortSpeed);
-          items[k].color = COLOR_ARRAY;
-          items[m - 1].color = COLOR_ARRAY;
+          items[k].color = COLUMNS_COLOR;
+          items[m - 1].color = COLUMNS_COLOR;
           k++;
         } else {
           items[k].color = "red";
@@ -50,8 +50,8 @@ export default async function MergeSort(
           currentSort.push(items[m]);
           setArray([...items]);
           await sleep(sortSpeed);
-          items[m].color = COLOR_ARRAY;
-          items[k].color = COLOR_ARRAY;
+          items[m].color = COLUMNS_COLOR;
+          items[k].color = COLUMNS_COLOR;
           m++;
         }
 

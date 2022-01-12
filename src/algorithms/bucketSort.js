@@ -1,4 +1,4 @@
-import { COLOR_ARRAY } from "../components/sortingVisualizer";
+import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 import InsertionSort from "./insertionSort";
 
@@ -35,7 +35,7 @@ export default async function BucketSort(
     array[j].color = "red";
     setArray([...array]);
     await sleep(sortSpeed);
-    array[j].color = COLOR_ARRAY;
+    array[j].color = COLUMNS_COLOR;
   }
 
   let g = 0;
@@ -45,7 +45,7 @@ export default async function BucketSort(
       array[g].color = "red";
       setArray([...array]);
       await sleep(sortSpeed);
-      array[g].color = COLOR_ARRAY;
+      array[g].color = COLUMNS_COLOR;
       g++;
     }
   }

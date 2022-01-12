@@ -1,5 +1,5 @@
 import { sleep } from "../components/sortingVisualizer";
-import { COLOR_ARRAY } from "../components/sortingVisualizer";
+import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 
 export default async function InsertionSort(
   array,
@@ -24,7 +24,7 @@ export default async function InsertionSort(
 
       await sleep(sortSpeed);
 
-      array[j - 1].color = COLOR_ARRAY;
+      array[j - 1].color = COLUMNS_COLOR;
 
       j--;
     }

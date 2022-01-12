@@ -1,5 +1,5 @@
 import { sleep } from "../components/sortingVisualizer";
-import { COLOR_ARRAY } from "../components/sortingVisualizer";
+import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 
 export default async function SelectionSort(
   array,
@@ -21,7 +21,7 @@ export default async function SelectionSort(
         array[min].color = "red";
         setArray([...array]);
         await sleep(sortSpeed);
-        array[min].color = COLOR_ARRAY;
+        array[min].color = COLUMNS_COLOR;
       }
     }
 
