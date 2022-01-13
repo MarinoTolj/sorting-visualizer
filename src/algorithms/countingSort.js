@@ -39,7 +39,7 @@ export default async function CountingSort(
     /* count[array[i].value].value++; */
     count[array[i].value]++;
 
-    setArray([...array, i]);
+    setArray([...array]);
     await sleep(sortSpeed);
     array[i].color = COLUMNS_COLOR;
   }
@@ -55,6 +55,8 @@ export default async function CountingSort(
       array[j - 1].color = COLUMNS_COLOR;
     }
   }
+
+  console.log(array);
 
   setIsRunning(false);
 }

@@ -13,9 +13,6 @@ export default async function SelectionSort(
   for (let i = 0; i < array.length; i++) {
     min = i;
     for (let j = i + 1; j < array.length; j++) {
-      /* array[j].color = "purple";
-      setArray([...array]);
-      await sleep(500); */
       if (array[j].value < array[min].value) {
         min = j;
         array[min].color = "red";

@@ -9,7 +9,7 @@ export default async function InsertionSort(
 ) {
   let temp = 0;
   setIsRunning(true);
-  console.log("insertion");
+
   for (let i = 1; i < array.length; i++) {
     let j = i;
 

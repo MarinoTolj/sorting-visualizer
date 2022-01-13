@@ -17,6 +17,7 @@ export default function SortingVisualizer() {
   const [sortSpeed, setSortSpeed] = useState(5);
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
+  //checks if algorithm is running which makes other buttons disabled because it leads to problems
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
@@ -43,6 +44,15 @@ export default function SortingVisualizer() {
     setArray(array);
   };
 
+  const bestCaseArray = () => {
+    let array = [];
+    for (let i = 0; i < arraySize; i++) {
+      array.push({ value: 45 + i, color: COLUMNS_COLOR });
+    }
+
+    setArray(array);
+  };
+
   function handleReset() {
     setArray(GenerateRandomArray());
   }
@@ -51,31 +61,12 @@ export default function SortingVisualizer() {
     let array = [];
     for (let i = 0; i < arraySize; i++) {
       array.push({
-        value:
+        value: Math.floor(
           Math.random() * (MAX_VALUE_OF_ARRAY - MIN_VALUE_OF_ARRAY) +
-          MIN_VALUE_OF_ARRAY,
+            MIN_VALUE_OF_ARRAY
+        ),
         color: COLUMNS_COLOR,
       });
-    }
-    array = shuffle(array);
-    return array;
-  }
-
-  function shuffle(array) {
-    let currentIndex = array.length,
-      randomIndex;
-
-    // While there remain elements to shuffle...
-    while (currentIndex != 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
     }
 
     return array;
@@ -89,6 +80,7 @@ export default function SortingVisualizer() {
         isRunning={isRunning}
         handleAlgorithmChoice={handleAlgorithmChoice}
         worstCaseArray={worstCaseArray}
+        bestCaseArray={bestCaseArray}
       />
       <Inputs
         arraySize={arraySize}
@@ -106,7 +98,7 @@ export default function SortingVisualizer() {
     </div>
   );
 }
-
+//function for pausing the algorithm so that changes are visible for certain amount of time
 export function sleep(sortSpeed) {
   return new Promise((resolve) => setTimeout(resolve, sortSpeed));
 }

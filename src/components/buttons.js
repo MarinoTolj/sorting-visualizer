@@ -7,6 +7,7 @@ const Buttons = ({
   isRunning,
   handleAlgorithmChoice,
   worstCaseArray,
+  bestCaseArray,
 }) => {
   const buttons = [
     {
@@ -47,6 +48,9 @@ const Buttons = ({
     <div className={styles.btn}>
       <Button variant="primary" onClick={handleReset} disabled={isRunning}>
         Reset
+      </Button>
+      <Button variant="success" onClick={bestCaseArray} disabled={isRunning}>
+        Best Case
       </Button>
       <Button variant="danger" onClick={worstCaseArray} disabled={isRunning}>
         Worst Case
