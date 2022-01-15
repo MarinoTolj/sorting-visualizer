@@ -12,49 +12,51 @@ import { algorithmsDescription } from "./description";
 export default function AlgorithmChoice(
   array,
   setArray,
-  setIsRunning,
-  setDescription,
+  animations,
   sortSpeed,
+  setDescription,
   name
 ) {
   switch (name) {
     case "Bubble sort":
       setDescription(algorithmsDescription.BubbleSort);
-      BubbleSort(array, setArray, setIsRunning, sortSpeed);
+      animations = BubbleSort(array, setArray, animations, sortSpeed);
       break;
     case "Insertion sort":
       setDescription(algorithmsDescription.InsertionSort);
-      InsertionSort(array, setArray, setIsRunning, sortSpeed);
+      animations = InsertionSort(array, setArray, animations, sortSpeed);
       break;
     case "Selection sort":
       setDescription(algorithmsDescription.SelectionSort);
-      SelectionSort(array, setArray, setIsRunning, sortSpeed);
+      animations = SelectionSort(array);
       break;
     case "Merge sort":
       setDescription(algorithmsDescription.MergeSort);
-      MergeSort(array, setArray, setIsRunning, sortSpeed);
+      animations = MergeSort(array);
       break;
     case "Quick sort":
       setDescription(algorithmsDescription.QuickSort);
-      QuickSort(array, setArray, setIsRunning, sortSpeed);
+      animations = QuickSort(array);
       break;
     case "Heap sort":
       setDescription(algorithmsDescription.HeapSort);
-      HeapSort(array, setArray, setIsRunning, sortSpeed);
+      animations = HeapSort(array);
       break;
     case "Radix sort":
       setDescription(algorithmsDescription.RadixSort);
-      RadixSort(array, setArray, setIsRunning, sortSpeed);
+      animations = RadixSort(array);
       break;
     case "Bucket sort":
       setDescription(algorithmsDescription.BucketSort);
-      BucketSort(array, setArray, setIsRunning, sortSpeed);
+      animations = BucketSort(array);
       break;
     case "Counting sort":
       setDescription(algorithmsDescription.CountingSort);
-      CountingSort(array, setArray, setIsRunning, sortSpeed);
+      animations = CountingSort(array);
       break;
     default:
       break;
   }
+
+  return animations;
 }
