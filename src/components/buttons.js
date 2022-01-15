@@ -49,9 +49,9 @@ const Buttons = ({
       <Button variant="primary" onClick={handleReset} disabled={isRunning}>
         Reset
       </Button>
-      <Button variant="success" onClick={bestCaseArray} disabled={isRunning}>
+      {/* <Button variant="success" onClick={bestCaseArray} disabled={isRunning}>
         Best Case
-      </Button>
+      </Button> */}
       <Button variant="danger" onClick={worstCaseArray} disabled={isRunning}>
         Worst Case
       </Button>
