@@ -1,7 +1,7 @@
 import React from "react";
 import * as styles from "../styles/input.module.css";
 
-const ARRAY_SIZE_MIN = 64;
+const ARRAY_SIZE_MIN = 32;
 const ARRAY_SIZE_MAX = 256;
 
 const SORT_SPEED_MIN = 5;

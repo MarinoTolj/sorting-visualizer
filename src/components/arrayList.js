@@ -27,7 +27,9 @@ export default function ArrayList({ array, description, arraySize }) {
             height: `${element.value}px`,
             backgroundColor: `${element.color}`,
           }}
-        ></div>
+        >
+          {/* {index} */}
+        </div>
       ))}
       {description && (
         <section className={styles.sectioncontainer}>{description}</section>

@@ -1,6 +1,6 @@
 import React from "react";
 import * as styles from "../styles/sortingVisualizer.module.css";
-import Button from "react-bootstrap/Button";
+import { Button, Dropdown } from "react-bootstrap";
 
 const Buttons = ({
   handleReset,
@@ -55,7 +55,7 @@ const Buttons = ({
       <Button variant="danger" onClick={worstCaseArray} disabled={isRunning}>
         Worst Case
       </Button>
-      {buttons.map((button, index) => (
+      {/* {buttons.map((button, index) => (
         <Button
           key={index}
           variant={button.variant}
@@ -65,7 +65,104 @@ const Buttons = ({
         >
           {button.text}
         </Button>
-      ))}
+      ))} */}
+      <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Bubble sort"
+      >
+        Bubble Sort
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Insertion sort"
+      >
+        Insertion Sort
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Selection sort"
+      >
+        Selection Sort
+      </Button>
+      {/* <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Merge sort"
+      >
+        Merge Sort
+      </Button> */}
+      <Dropdown>
+        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+          Merge Sort
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Button
+            variant="secondary"
+            onClick={handleAlgorithmChoice}
+            disabled={isRunning}
+            value="Merge sort-recursive"
+          >
+            Recursive
+          </Button>
+          <Dropdown.Divider />
+          <Button
+            variant="secondary"
+            onClick={handleAlgorithmChoice}
+            disabled={isRunning}
+            value="Merge sort-non-recursive"
+          >
+            Non-recursive
+          </Button>
+        </Dropdown.Menu>
+      </Dropdown>
+      <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Quick sort"
+      >
+        Quick Sort
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Heap sort"
+      >
+        Heap Sort
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Bucket sort"
+      >
+        Bucket Sort
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Radix sort"
+      >
+        Radix Sort
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={handleAlgorithmChoice}
+        disabled={isRunning}
+        value="Counting sort"
+      >
+        Counting Sort
+      </Button>
     </div>
   );
 };

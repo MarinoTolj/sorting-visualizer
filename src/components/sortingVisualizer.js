@@ -14,7 +14,7 @@ const MAX_VALUE_OF_ARRAY = 300;
 export const COLUMNS_COLOR = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
-  const [arraySize, setArraySize] = useState(64);
+  const [arraySize, setArraySize] = useState(32);
   const [sortSpeed, setSortSpeed] = useState(5);
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
@@ -33,10 +33,10 @@ export default function SortingVisualizer() {
     }
   }, [animations]); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log("run", isRunning);
-    /* setSortSpeed(sortSpeed); */
-  }, [isRunning]);
+    setSortSpeed(sortSpeed);
+  }, [isRunning]); */
 
   const handleAlgorithmChoice = (e) => {
     AlgorithmChoice(

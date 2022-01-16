@@ -32,7 +32,7 @@ export default function BubbleSort(array, setArray, sortSpeed, setIsRunning) {
       }
     }
   } while (swapped);
-  console.log("hello");
+  console.log(steps);
 
   Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
 }

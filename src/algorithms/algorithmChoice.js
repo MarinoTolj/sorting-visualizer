@@ -1,7 +1,8 @@
 import BubbleSort from "./bubbleSort";
 import InsertionSort from "./insertionSort";
 import SelectionSort from "./selectionSort";
-import MergeSort from "./mergeSort";
+import mergeSortNonRecursive from "./mergeSortNonRecursive";
+import mergeSortRecursive from "./mergeSortRecursive";
 import QuickSort from "./quickSort";
 import HeapSort from "./heapSort";
 import RadixSort from "./radixSort";
@@ -30,10 +31,15 @@ export default function AlgorithmChoice(
       setDescription(algorithmsDescription.SelectionSort);
       SelectionSort(array, setArray, sortSpeed, setIsRunning);
       break;
-    case "Merge sort":
+    case "Merge sort-recursive":
       setDescription(algorithmsDescription.MergeSort);
-      MergeSort(array, setArray, sortSpeed, setIsRunning);
+      mergeSortRecursive(array, setArray, sortSpeed, setIsRunning);
       break;
+    case "Merge sort-non-recursive":
+      setDescription(algorithmsDescription.MergeSort);
+      mergeSortNonRecursive(array, setArray, sortSpeed, setIsRunning);
+      break;
+
     case "Quick sort":
       setDescription(algorithmsDescription.QuickSort);
       QuickSort(array, setArray, sortSpeed, setIsRunning);
