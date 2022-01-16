@@ -1,30 +1,27 @@
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
-export default async function MergeSort(
-  array,
-  setArray,
-  setIsRunning,
-  sortSpeed
-) {
+export default function MergeSort(array, setArray, sortSpeed, setIsRunning) {
   let auxiliaryArray = [...array];
-  var width, i;
-  const n = auxiliaryArray.length;
-  var items = [...auxiliaryArray];
+  /*  var width, i; */
+  /* const n = auxiliaryArray.length; */
+  /* var items = [...auxiliaryArray];
 
   var currentSort = [],
-    j;
-  setIsRunning(true);
-  /* bottomUpSort(auxiliaryArray, auxiliaryArray.length, setArray); */
-  for (width = 1; width < n; width = width * 2) {
+    j; */
+  let steps = [];
+
+  bottomUpSort(auxiliaryArray, auxiliaryArray.length, steps);
+
+  /* for (width = 1; width < n; width = width * 2) {
     for (i = 0; i < n; i = i + 2 * width) {
-      /* bottomUpMerge(
+      bottomUpMerge(
         auxiliaryArray,
         i,
         Math.min(i + width, n),
         Math.min(i + 2 * width, n),
         setArray
-      ); */
+      );
       var left = i;
       var right = Math.min(i + width, n);
       var end = Math.min(i + 2 * width, n);
@@ -34,13 +31,11 @@ export default async function MergeSort(
       var currentSort = [],
         j;
       for (j = left; j < end; j++) {
-        /* setArray([...items]); */
         if (k < right && (m >= end || items[k].value < items[m].value)) {
           items[k].color = "red";
           items[m - 1].color = "red";
           currentSort.push(items[k]);
-          setArray([...items]);
-          await sleep(sortSpeed);
+
           items[k].color = COLUMNS_COLOR;
           items[m - 1].color = COLUMNS_COLOR;
           k++;
@@ -48,27 +43,22 @@ export default async function MergeSort(
           items[k].color = "red";
           items[m].color = "red";
           currentSort.push(items[m]);
-          setArray([...items]);
-          await sleep(sortSpeed);
+
           items[m].color = COLUMNS_COLOR;
           items[k].color = COLUMNS_COLOR;
           m++;
         }
-
-        /* setArray([...items]); */
       }
 
       currentSort.map(function (item, i) {
         items[left + i] = item;
       });
     }
-  }
-
-  setArray(currentSort);
-  setIsRunning(false);
+  } */
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
 }
 
-function bottomUpSort(items, n, setArray) {
+function bottomUpSort(items, n, steps) {
   var width, i;
 
   for (width = 1; width < n; width = width * 2) {
@@ -78,13 +68,12 @@ function bottomUpSort(items, n, setArray) {
         i,
         Math.min(i + width, n),
         Math.min(i + 2 * width, n),
-        setArray
+        steps
       );
     }
   }
 }
-
-async function bottomUpMerge(items, left, right, end, setArray) {
+function bottomUpMerge(items, left, right, end, steps) {
   var n = left,
     m = right,
     currentSort = [],
@@ -92,26 +81,39 @@ async function bottomUpMerge(items, left, right, end, setArray) {
 
   for (j = left; j < end; j++) {
     if (n < right && (m >= end || items[n].value < items[m].value)) {
-      items[n].color = "red";
       currentSort.push(items[n]);
-      /* setArray([...items]); */
-      await sleep(20);
-      items[n].color = "blue";
+      steps.push({ x: n, y: m - 1 });
       n++;
     } else {
-      items[m].color = "red";
       currentSort.push(items[m]);
-      /* setArray([...items]); */
-      await sleep(20);
-      items[m].color = "blue";
+      steps.push({ x: n, y: m });
       m++;
     }
   }
-  console.log(currentSort);
-  setArray(currentSort);
   currentSort.map(function (item, i) {
     items[left + i] = item;
   });
+}
+
+async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
+  let temp = 0;
+  console.log(steps);
+  setIsRunning(true);
+  for (let i = 0; i < steps.length; i++) {
+    array[steps[i].x].color = "red";
+    array[steps[i].y].color = "red";
+
+    temp = array[steps[i].x].value;
+    array[steps[i].x].value = array[steps[i].y].value;
+    array[steps[i].y].value = temp;
+
+    setArray([...array]);
+    await sleep(sortSpeed);
+    array[steps[i].x].color = COLUMNS_COLOR;
+    array[steps[i].y].color = COLUMNS_COLOR;
+  }
+
+  setIsRunning(false);
 }
 
 /*  var items1 = [5,4,3,2,1],

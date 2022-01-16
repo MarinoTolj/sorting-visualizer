@@ -12,51 +12,49 @@ import { algorithmsDescription } from "./description";
 export default function AlgorithmChoice(
   array,
   setArray,
-  animations,
   sortSpeed,
   setDescription,
+  setIsRunning,
   name
 ) {
   switch (name) {
     case "Bubble sort":
       setDescription(algorithmsDescription.BubbleSort);
-      animations = BubbleSort(array, setArray, animations, sortSpeed);
+      BubbleSort(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Insertion sort":
       setDescription(algorithmsDescription.InsertionSort);
-      animations = InsertionSort(array, setArray, animations, sortSpeed);
+      InsertionSort(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Selection sort":
       setDescription(algorithmsDescription.SelectionSort);
-      animations = SelectionSort(array);
+      SelectionSort(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Merge sort":
       setDescription(algorithmsDescription.MergeSort);
-      animations = MergeSort(array);
+      MergeSort(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Quick sort":
       setDescription(algorithmsDescription.QuickSort);
-      animations = QuickSort(array);
+      QuickSort(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Heap sort":
       setDescription(algorithmsDescription.HeapSort);
-      animations = HeapSort(array);
+      HeapSort(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Radix sort":
       setDescription(algorithmsDescription.RadixSort);
-      animations = RadixSort(array);
+      RadixSort(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Bucket sort":
       setDescription(algorithmsDescription.BucketSort);
-      animations = BucketSort(array);
+      BucketSort(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Counting sort":
       setDescription(algorithmsDescription.CountingSort);
-      animations = CountingSort(array);
+      CountingSort(array, setArray, sortSpeed, setIsRunning);
       break;
     default:
       break;
   }
-
-  return animations;
 }

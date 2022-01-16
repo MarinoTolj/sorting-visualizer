@@ -27,30 +27,26 @@ export default function SortingVisualizer() {
     handleReset();
   }, [arraySize]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (animations.length > 0) {
       handleAnimation();
     }
-  }, [animations]);
+  }, [animations]); */
 
   useEffect(() => {
-    console.log(sortSpeed);
-    setSortSpeed(sortSpeed);
-  }, [sortSpeed]);
+    console.log("run", isRunning);
+    /* setSortSpeed(sortSpeed); */
+  }, [isRunning]);
 
   const handleAlgorithmChoice = (e) => {
-    let animations = [];
-    /* handleName(e.target.value); */
-
-    animations = AlgorithmChoice(
+    AlgorithmChoice(
       array,
       setArray,
-      animations,
       sortSpeed,
       setDescription,
+      setIsRunning,
       e.target.value
     );
-    setAnimations(animations);
   };
 
   const worstCaseArray = () => {
@@ -90,7 +86,7 @@ export default function SortingVisualizer() {
     return array;
   }
 
-  const handleBubble = () => {
+  /* const handleBubble = () => {
     let temp = 0;
     let array2 = [...array];
     for (let i = 0; i < array2.length; i++) {
@@ -110,6 +106,7 @@ export default function SortingVisualizer() {
 
   const handleAnimation = async () => {
     let temp = 0;
+    console.log("hello", sortSpeed);
 
     for (let i = 0; i < animations.length; i++) {
       array[animations[i].x].color = "red";
@@ -125,7 +122,7 @@ export default function SortingVisualizer() {
       array[animations[i].y].color = COLUMNS_COLOR;
     }
     setArray([...array]);
-  };
+  }; */
 
   return (
     <div className={styles.container}>
@@ -137,8 +134,8 @@ export default function SortingVisualizer() {
         worstCaseArray={worstCaseArray}
         /* bestCaseArray={bestCaseArray} */
       />
-      <Button onClick={handleBubble}>Bubble 2</Button>
-      <Button onClick={handleAnimation}>Sort</Button>
+      {/* <Button onClick={handleBubble}>Bubble 2</Button>
+      <Button onClick={handleAnimation}>Sort</Button> */}
       <Inputs
         arraySize={arraySize}
         setArraySize={setArraySize}
