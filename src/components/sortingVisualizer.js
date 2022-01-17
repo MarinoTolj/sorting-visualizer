@@ -9,12 +9,12 @@ import Inputs from "./inputs";
 import Buttons from "./buttons";
 
 const MIN_VALUE_OF_ARRAY = 5;
-const MAX_VALUE_OF_ARRAY = 300;
+const MAX_VALUE_OF_ARRAY = 200;
 
 export const COLUMNS_COLOR = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
-  const [arraySize, setArraySize] = useState(32);
+  const [arraySize, setArraySize] = useState(256);
   const [sortSpeed, setSortSpeed] = useState(5);
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
@@ -126,7 +126,6 @@ export default function SortingVisualizer() {
 
   return (
     <div className={styles.container}>
-      <h1>Sorting Visualizer</h1>
       <Buttons
         handleReset={handleReset}
         isRunning={isRunning}

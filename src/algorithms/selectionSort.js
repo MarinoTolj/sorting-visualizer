@@ -36,6 +36,7 @@ export default function SelectionSort(
 async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
   let temp = 0;
   setIsRunning(true);
+  console.log(steps.length);
   for (let i = 0; i < steps.length; i++) {
     if (steps[i].y === -1) {
       array[steps[i].x].color = "red";

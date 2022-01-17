@@ -30,6 +30,7 @@ export default function InsertionSort(
 async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
   let temp = 0;
   setIsRunning(true);
+  console.log(steps.length);
   for (let i = 0; i < steps.length; i++) {
     array[steps[i].y].color = "red";
 
