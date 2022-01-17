@@ -1,10 +1,12 @@
 import React from "react";
+import * as styles from "../styles/toggle.module.css";
+import classNames from "classnames";
 
-const Toggle = () => {
+const Toggle = ({ setToggle }) => {
   return (
-    <label class="switch">
-      <input type="checkbox" />
-      <span class="slider round"></span>
+    <label className={styles.switch1}>
+      <input type="checkbox" onChange={() => setToggle((prev) => !prev)} />
+      <span className={classNames(styles.slider, styles.round)}></span>
     </label>
   );
 };

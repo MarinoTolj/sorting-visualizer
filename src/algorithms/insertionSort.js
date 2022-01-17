@@ -44,5 +44,7 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
     array[steps[i].y].color = COLUMNS_COLOR;
   }
 
+  setArray([...array]);
+
   setIsRunning(false);
 }

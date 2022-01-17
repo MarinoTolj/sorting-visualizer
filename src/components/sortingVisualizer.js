@@ -14,7 +14,7 @@ const MAX_VALUE_OF_ARRAY = 200;
 export const COLUMNS_COLOR = "rgba(13,110,253,255)";
 
 export default function SortingVisualizer() {
-  const [arraySize, setArraySize] = useState(256);
+  const [arraySize, setArraySize] = useState(32);
   const [sortSpeed, setSortSpeed] = useState(5);
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
@@ -50,12 +50,18 @@ export default function SortingVisualizer() {
   };
 
   const worstCaseArray = () => {
-    let array = [];
-    for (let i = 0; i < arraySize; i++) {
+    /* let array = [];
+    let size = arraySize >= 200 ? 200 : arraySize;
+    for (let i = 0; i < size; i++) {
       array.push({ value: MAX_VALUE_OF_ARRAY - i, color: COLUMNS_COLOR });
-    }
+    } */
+    let worstCaseArray = array
+      .sort(function (a, b) {
+        return a.value - b.value;
+      })
+      .reverse();
 
-    setArray(array);
+    setArray([...worstCaseArray]);
   };
 
   /* const bestCaseArray = () => {

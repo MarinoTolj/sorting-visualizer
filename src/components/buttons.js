@@ -9,41 +9,6 @@ const Buttons = ({
   worstCaseArray,
   bestCaseArray,
 }) => {
-  const buttons = [
-    {
-      variant: "secondary",
-      text: "Bubble sort",
-    },
-    {
-      variant: "secondary",
-      text: "Insertion sort",
-    },
-    {
-      variant: "secondary",
-      text: "Selection sort",
-    },
-    {
-      variant: "secondary",
-      text: "Merge sort",
-    },
-    {
-      variant: "secondary",
-      text: "Quick sort",
-    },
-    {
-      variant: "secondary",
-      text: "Heap sort",
-    },
-    {
-      variant: "secondary",
-      text: "Bucket sort",
-    },
-    { variant: "secondary", text: "Radix sort" },
-    {
-      variant: "secondary",
-      text: "Counting sort",
-    },
-  ];
   return (
     <div className={styles.btn}>
       <Button variant="primary" onClick={handleReset} disabled={isRunning}>
@@ -99,7 +64,11 @@ const Buttons = ({
         Merge Sort
       </Button> */}
       <Dropdown>
-        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+        <Dropdown.Toggle
+          variant="secondary"
+          id="dropdown-basic"
+          disabled={isRunning}
+        >
           Merge Sort
         </Dropdown.Toggle>
 
@@ -131,14 +100,43 @@ const Buttons = ({
       >
         Quick Sort
       </Button>
-      <Button
+      {/* <Button
         variant="secondary"
         onClick={handleAlgorithmChoice}
         disabled={isRunning}
         value="Heap sort"
       >
         Heap Sort
-      </Button>
+      </Button> */}
+      <Dropdown>
+        <Dropdown.Toggle
+          variant="secondary"
+          id="dropdown-basic"
+          disabled={isRunning}
+        >
+          Heap Sort
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Button
+            variant="secondary"
+            onClick={handleAlgorithmChoice}
+            disabled={isRunning}
+            value="Heap sort max-heap"
+          >
+            Max-Heap
+          </Button>
+          <Dropdown.Divider />
+          <Button
+            variant="secondary"
+            onClick={handleAlgorithmChoice}
+            disabled={isRunning}
+            value="Heap sort min-heap"
+          >
+            Min-Heap
+          </Button>
+        </Dropdown.Menu>
+      </Dropdown>
       <Button
         variant="secondary"
         onClick={handleAlgorithmChoice}

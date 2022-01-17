@@ -5,8 +5,8 @@ import InsertionSort from "./insertionSort";
 export default async function BucketSort(
   array,
   setArray,
-  setIsRunning,
-  sortSpeed
+  sortSpeed,
+  setIsRunning
 ) {
   setIsRunning(true);
 
@@ -49,7 +49,7 @@ export default async function BucketSort(
       g++;
     }
   }
-  InsertionSort(array, setArray, setIsRunning, sortSpeed);
+  InsertionSort(array, setArray, sortSpeed, setIsRunning);
 
   setIsRunning(false);
 }

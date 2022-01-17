@@ -16,8 +16,10 @@ export default async function mergeSortNonRecursive(
     j;
   let steps = [];
 
-  /* bottomUpSort(auxiliaryArray, auxiliaryArray.length, steps); */
-  setIsRunning(true);
+  bottomUpSort(auxiliaryArray, auxiliaryArray.length, steps);
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+  setArray([...items]);
+  /* setIsRunning(true);
   for (width = 1; width < n; width = width * 2) {
     for (i = 0; i < n; i = i + 2 * width) {
       var left = i;
@@ -56,8 +58,7 @@ export default async function mergeSortNonRecursive(
     }
   }
   setArray(currentSort);
-  setIsRunning(false);
-  /* Vizualize(array, setArray, steps, sortSpeed, setIsRunning); */
+  setIsRunning(false); */
 }
 
 function bottomUpSort(items, n, steps) {
@@ -76,24 +77,51 @@ function bottomUpSort(items, n, steps) {
   }
 }
 function bottomUpMerge(items, left, right, end, steps) {
-  var n = left,
-    m = right,
+  let n = left,
+    m = right + 1,
     currentSort = [],
     j,
     temp;
   console.log(left, right, end);
 
-  for (j = left; j < end; j++) {
+  /* for (j = left; j < end; j++) {
+    steps.push({ x: n, y: m - 1, q: -1 });
     if (n < right && (m >= end || items[n].value < items[m].value)) {
       currentSort.push(items[n]);
       steps.push({ x: n, y: items[n].value, z: m - 1, q: items[m - 1].value });
+      steps.push({ x: n, y: items[m - 1], q: 1 });
       n++;
     } else {
       currentSort.push(items[m]);
       steps.push({ x: m, y: items[n].value, z: n, q: items[m].value });
+      steps.push({ x: m, y: items[n], q: 1 });
       m++;
     }
   }
+  currentSort.map(function (item, i) {
+    items[left + i] = item;
+  }); */
+
+  while (n < right && m < end) {
+    if (items[n].value <= items[m].value) {
+      currentSort.push(items[n]);
+      n++;
+    } else {
+      currentSort.push(items[m]);
+      m++;
+    }
+  }
+
+  while (n < right) {
+    currentSort.push(items[n]);
+    n++;
+  }
+
+  while (m < end) {
+    currentSort.push(items[m]);
+    m++;
+  }
+
   currentSort.map(function (item, i) {
     items[left + i] = item;
   });
@@ -136,7 +164,7 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
     
   } */
 
-  for (let i = 0; i < 63; i++) {
+  /* for (let i = 0; i < 63; i++) {
     array[steps[i].x].color = "red";
     array[steps[i].z].color = "red";
 
@@ -150,6 +178,32 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
 
     array[steps[i].x].color = COLUMNS_COLOR;
     array[steps[i].z].color = COLUMNS_COLOR;
+  } */
+
+  for (let i = 0; i < steps.length; i++) {
+    if (steps[i].q === -1) {
+      array[steps[i].x].color = "red";
+      array[steps[i].y].color = "red";
+
+      /* temp = array[steps[i].x];
+      array[steps[i].x] = array[steps[i].y];
+      array[steps[i].y] = temp; */
+
+      setArray([...array]);
+      await sleep(sortSpeed);
+
+      array[steps[i].x].color = COLUMNS_COLOR;
+      array[steps[i].y].color = COLUMNS_COLOR;
+    } else {
+      array[steps[i].x].value = steps[i].y;
+
+      /* temp = array[steps[i].x];
+      array[steps[i].x] = array[steps[i].y];
+      array[steps[i].y] = temp; */
+
+      setArray([...array]);
+      await sleep(sortSpeed);
+    }
   }
 
   /* for (let i = 32; i < 63; i++) {

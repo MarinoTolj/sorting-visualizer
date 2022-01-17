@@ -4,8 +4,8 @@ import { sleep } from "../components/sortingVisualizer";
 export default async function RadixSort(
   array,
   setArray,
-  setIsRunning,
-  sortSpeed
+  sortSpeed,
+  setIsRunning
 ) {
   const maxLength = largestNum(array);
 

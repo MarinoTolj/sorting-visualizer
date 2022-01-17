@@ -4,8 +4,8 @@ import { sleep } from "../components/sortingVisualizer";
 export default async function QuickSort(
   array,
   setArray,
-  setIsRunning,
-  sortSpeed
+  sortSpeed,
+  setIsRunning
 ) {
   const MAX_LEVELS = 1000;
   let piv,

@@ -4,8 +4,8 @@ import { sleep } from "../components/sortingVisualizer";
 export default async function CountingSort(
   array,
   setArray,
-  setIsRunning,
-  sortSpeed
+  sortSpeed,
+  setIsRunning
 ) {
   setIsRunning(true);
   let minValue = array[0].value,

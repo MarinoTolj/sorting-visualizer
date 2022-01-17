@@ -4,7 +4,8 @@ import SelectionSort from "./selectionSort";
 import mergeSortNonRecursive from "./mergeSortNonRecursive";
 import mergeSortRecursive from "./mergeSortRecursive";
 import QuickSort from "./quickSort";
-import HeapSort from "./heapSort";
+import HeapSortMaxHeap from "./heapSortMaxHeap";
+import HeapSortMinHeap from "./heapSortMinHeap";
 import RadixSort from "./radixSort";
 import BucketSort from "./bucketSort";
 import CountingSort from "./countingSort";
@@ -44,9 +45,13 @@ export default function AlgorithmChoice(
       setDescription(algorithmsDescription.QuickSort);
       QuickSort(array, setArray, sortSpeed, setIsRunning);
       break;
-    case "Heap sort":
+    case "Heap sort max-heap":
       setDescription(algorithmsDescription.HeapSort);
-      HeapSort(array, setArray, sortSpeed, setIsRunning);
+      HeapSortMaxHeap(array, setArray, sortSpeed, setIsRunning);
+      break;
+    case "Heap sort min-heap":
+      setDescription(algorithmsDescription.HeapSort);
+      HeapSortMinHeap(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Radix sort":
       setDescription(algorithmsDescription.RadixSort);

@@ -2,18 +2,23 @@ import React from "react";
 import SortingVisualizer from "../components/sortingVisualizer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Toggle from "../components/toggle";
+import { useState, useEffect } from "react";
 
-export default function index() {
-  /* const [description, setDescription] = useState(""); */
-  //https://www.w3schools.com/howto/howto_css_switch.asp
+export default function Index() {
+  const [toggle, setToggle] = useState(false);
+
+  /* useEffect(() => {
+    console.log(toggle);
+  }, [toggle]); */
+
   return (
     <div>
       <h1 style={{ display: "flex", justifyContent: "center" }}>
         Sorting Visualizer
       </h1>
-      <Toggle />
+      <Toggle setToggle={setToggle} />
       <SortingVisualizer />
-      <SortingVisualizer />
+      {toggle && <SortingVisualizer />}
     </div>
   );
 }
