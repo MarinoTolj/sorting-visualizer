@@ -12,7 +12,7 @@ export default function ArrayList({ array, description, arraySize }) {
     if (window.innerWidth > 1280) {
       setArrayWidth((1280 - arraySize - 10) / arraySize);
     } else {
-      setArrayWidth((window.innerWidth - arraySize - 10) / arraySize);
+      setArrayWidth((window.innerWidth - arraySize - 20) / arraySize);
     }
   }, [arraySize, window.innerWidth]);
 

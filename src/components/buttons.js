@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as styles from "../styles/sortingVisualizer.module.css";
 import { Button, Dropdown } from "react-bootstrap";
 
@@ -7,7 +7,9 @@ const Buttons = ({
   isRunning,
   handleAlgorithmChoice,
   worstCaseArray,
-  bestCaseArray,
+  bucketSize,
+  setBucketSize,
+  arraySize,
 }) => {
   return (
     <div className={styles.btn}>
@@ -55,14 +57,7 @@ const Buttons = ({
       >
         Selection Sort
       </Button>
-      {/* <Button
-        variant="secondary"
-        onClick={handleAlgorithmChoice}
-        disabled={isRunning}
-        value="Merge sort"
-      >
-        Merge Sort
-      </Button> */}
+
       <Dropdown>
         <Dropdown.Toggle
           variant="secondary"
@@ -100,14 +95,7 @@ const Buttons = ({
       >
         Quick Sort
       </Button>
-      {/* <Button
-        variant="secondary"
-        onClick={handleAlgorithmChoice}
-        disabled={isRunning}
-        value="Heap sort"
-      >
-        Heap Sort
-      </Button> */}
+
       <Dropdown>
         <Dropdown.Toggle
           variant="secondary"
@@ -137,22 +125,74 @@ const Buttons = ({
           </Button>
         </Dropdown.Menu>
       </Dropdown>
+      <Dropdown>
+        <Dropdown.Toggle
+          variant="secondary"
+          id="dropdown-basic"
+          disabled={isRunning}
+        >
+          Bucket sort
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <p>Change the size of bucket</p>
+          <input
+            type="range"
+            min="1"
+            max={arraySize}
+            value={bucketSize}
+            onChange={(e) => setBucketSize(e.target.value)}
+          />
+          {bucketSize}
+          <Dropdown.Divider />
+          <Button
+            variant="secondary"
+            onClick={handleAlgorithmChoice}
+            disabled={isRunning}
+            value="Bucket sort"
+          >
+            Sort
+          </Button>
+        </Dropdown.Menu>
+      </Dropdown>
+      {/* <Dropdown>
+        <Dropdown.Toggle
+          variant="secondary"
+          id="dropdown-basic"
+          disabled={isRunning}
+        >
+          Radix Sort
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Button
+            variant="secondary"
+            onClick={handleAlgorithmChoice}
+            disabled={isRunning}
+            value="Radix sort lsd"
+          >
+            LSD Variant
+          </Button>
+          <Dropdown.Divider />
+          <Button
+            variant="secondary"
+            onClick={handleAlgorithmChoice}
+            disabled={isRunning}
+            value="Radix sort msd"
+          >
+            MSD Variant
+          </Button>
+        </Dropdown.Menu>
+      </Dropdown> */}
       <Button
         variant="secondary"
         onClick={handleAlgorithmChoice}
         disabled={isRunning}
-        value="Bucket sort"
-      >
-        Bucket Sort
-      </Button>
-      <Button
-        variant="secondary"
-        onClick={handleAlgorithmChoice}
-        disabled={isRunning}
-        value="Radix sort"
+        value="Radix sort lsd"
       >
         Radix Sort
       </Button>
+
       <Button
         variant="secondary"
         onClick={handleAlgorithmChoice}

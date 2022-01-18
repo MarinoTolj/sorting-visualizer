@@ -14,7 +14,7 @@ export default async function RadixSort(
     let buckets = Array.from({ length: 10 }, () => []);
 
     for (let j = 0; j < array.length; j++) {
-      let num = getDigit(array[j], i);
+      let num = getDigit(array[j], i, maxLength);
 
       if (num !== undefined) {
         buckets[num].push(array[j]);
@@ -24,6 +24,8 @@ export default async function RadixSort(
         array[j].color = COLUMNS_COLOR;
       }
     }
+
+    console.log(buckets);
 
     /* array = buckets.flat(); */
     let g = 0;
@@ -46,13 +48,17 @@ export default async function RadixSort(
   setIsRunning(false);
 }
 
-const getDigit = (num, digitsPlace) => {
-  const stringNumber = String(num.value);
-  let end = stringNumber.length - 1;
-  const digit = stringNumber[end - digitsPlace];
+const getDigit = (num, digitsPlace, maxLength) => {
+  const stringNumber = String(num.value).split("");
+  while (stringNumber.length < maxLength) {
+    stringNumber.unshift("0");
+  }
+  const temp = stringNumber.join("");
 
-  if (digit === undefined) return 0;
-  else return digit;
+  const digit = temp[digitsPlace];
+  /* console.log(temp, digit, digitsPlace); */
+
+  return digit;
 };
 
 const largestNum = (array) => {

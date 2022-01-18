@@ -6,7 +6,8 @@ import mergeSortRecursive from "./mergeSortRecursive";
 import QuickSort from "./quickSort";
 import HeapSortMaxHeap from "./heapSortMaxHeap";
 import HeapSortMinHeap from "./heapSortMinHeap";
-import RadixSort from "./radixSort";
+import RadixSortLSD from "./radixSortLSD";
+import RadixSortMSD from "./radixSortMSD";
 import BucketSort from "./bucketSort";
 import CountingSort from "./countingSort";
 import { algorithmsDescription } from "./description";
@@ -17,7 +18,8 @@ export default function AlgorithmChoice(
   sortSpeed,
   setDescription,
   setIsRunning,
-  name
+  name,
+  bucketSize
 ) {
   switch (name) {
     case "Bubble sort":
@@ -53,13 +55,18 @@ export default function AlgorithmChoice(
       setDescription(algorithmsDescription.HeapSort);
       HeapSortMinHeap(array, setArray, sortSpeed, setIsRunning);
       break;
-    case "Radix sort":
-      setDescription(algorithmsDescription.RadixSort);
-      RadixSort(array, setArray, sortSpeed, setIsRunning);
-      break;
+
     case "Bucket sort":
       setDescription(algorithmsDescription.BucketSort);
-      BucketSort(array, setArray, sortSpeed, setIsRunning);
+      BucketSort(array, setArray, sortSpeed, setIsRunning, bucketSize);
+      break;
+    case "Radix sort lsd":
+      setDescription(algorithmsDescription.RadixSort);
+      RadixSortLSD(array, setArray, sortSpeed, setIsRunning);
+      break;
+    case "Radix sort msd":
+      setDescription(algorithmsDescription.RadixSort);
+      RadixSortMSD(array, setArray, sortSpeed, setIsRunning);
       break;
     case "Counting sort":
       setDescription(algorithmsDescription.CountingSort);

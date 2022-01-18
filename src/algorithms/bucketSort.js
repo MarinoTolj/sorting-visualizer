@@ -6,14 +6,14 @@ export default async function BucketSort(
   array,
   setArray,
   sortSpeed,
-  setIsRunning
+  setIsRunning,
+  bucketSize
 ) {
   setIsRunning(true);
 
   let i,
     minValue = array[0],
-    maxValue = array[0],
-    bucketSize = 15;
+    maxValue = array[0];
 
   array.forEach((currentValue) => {
     if (currentValue.value < minValue.value) {

@@ -1,28 +1,127 @@
+import { COLUMNS_COLOR } from "../components/sortingVisualizer";
+import { sleep } from "../components/sortingVisualizer";
+
 export default async function HeapSortMaxHeap(
   array,
   setArray,
   sortSpeed,
   setIsRunning
 ) {
-  console.log("hello");
-}
+  setIsRunning(true);
 
-function heapify(arr, n, i) {
-  var smallest = i; // Initialize smalles as root
-  var l = 2 * i + 1; // left = 2*i + 1
-  var r = 2 * i + 2; // right = 2*i + 2
+  /* buildMaxHeap(array, sortSpeed); */
+  let i = Math.floor(array.length / 2 - 1);
 
-  // If left child is smaller than root
-  if (l < n && arr[l].value < arr[smallest].value) smallest = l;
+  while (i >= 0) {
+    /* heapify(array, i, array.length, sortSpeed); */
+    let index;
+    let leftChild;
+    let rightChild;
+    let temp;
+    let max = array.length;
+    let j = i;
 
-  // If right child is smaller than smallest so far
-  if (r < n && arr[r].value < arr[smallest].value) smallest = r;
+    while (j < max) {
+      index = j;
 
-  // If smallest is not root
-  if (smallest != i) {
-    [arr[i], arr[smallest]] = [arr[smallest], arr[i]];
+      leftChild = 2 * j + 1;
+      rightChild = leftChild + 1;
 
-    // Recursively heapify the affected sub-tree
-    heapify(arr, n, smallest);
+      if (leftChild < max && array[leftChild].value < array[index].value) {
+        index = leftChild;
+      }
+
+      if (rightChild < max && array[rightChild].value < array[index].value) {
+        index = rightChild;
+      }
+
+      if (index === j) {
+        break;
+      }
+      array[j].color = "red";
+      array[index].color = "red";
+
+      temp = array[j];
+      array[j] = array[index];
+      array[index] = temp;
+
+      setArray([...array]);
+      await sleep(sortSpeed);
+
+      array[j].color = COLUMNS_COLOR;
+      array[index].color = COLUMNS_COLOR;
+
+      j = index;
+    }
+
+    i--;
   }
+
+  let lastElement = array.length - 1;
+  let temporary;
+  while (lastElement > 0) {
+    array[0].color = "red";
+    array[lastElement].color = "red";
+
+    temporary = array[0];
+    array[0] = array[lastElement];
+    array[lastElement] = temporary;
+
+    setArray([...array]);
+    await sleep(sortSpeed);
+    array[0].color = COLUMNS_COLOR;
+    array[lastElement].color = COLUMNS_COLOR;
+
+    /* heapify(array, 0, lastElement, sortSpeed); */
+    let index;
+    let leftChild;
+    let rightChild;
+    let temp;
+    let j = 0;
+
+    while (j < lastElement) {
+      index = j;
+
+      leftChild = 2 * j + 1;
+      rightChild = leftChild + 1;
+
+      if (
+        leftChild < lastElement &&
+        array[leftChild].value < array[index].value
+      ) {
+        index = leftChild;
+      }
+
+      if (
+        rightChild < lastElement &&
+        array[rightChild].value < array[index].value
+      ) {
+        index = rightChild;
+      }
+
+      if (index === j) {
+        break;
+      }
+      array[j].color = "red";
+      array[index].color = "red";
+
+      temp = array[j];
+      array[j] = array[index];
+      array[index] = temp;
+
+      setArray([...array]);
+      await sleep(sortSpeed);
+
+      array[j].color = COLUMNS_COLOR;
+      array[index].color = COLUMNS_COLOR;
+
+      j = index;
+    }
+
+    lastElement--;
+  }
+
+  setArray([...array]);
+
+  setIsRunning(false);
 }

@@ -18,6 +18,7 @@ export default function SortingVisualizer() {
   const [sortSpeed, setSortSpeed] = useState(5);
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
+  const [bucketSize, setBucketSize] = useState(15);
 
   //checks if algorithm is running which makes other buttons disabled because it leads to problems
   const [isRunning, setIsRunning] = useState(false);
@@ -45,7 +46,8 @@ export default function SortingVisualizer() {
       sortSpeed,
       setDescription,
       setIsRunning,
-      e.target.value
+      e.target.value,
+      bucketSize
     );
   };
 
@@ -137,6 +139,9 @@ export default function SortingVisualizer() {
         isRunning={isRunning}
         handleAlgorithmChoice={handleAlgorithmChoice}
         worstCaseArray={worstCaseArray}
+        bucketSize={bucketSize}
+        setBucketSize={setBucketSize}
+        arraySize={arraySize}
         /* bestCaseArray={bestCaseArray} */
       />
       {/* <Button onClick={handleBubble}>Bubble 2</Button>
