@@ -99,32 +99,18 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
   setIsRunning(true);
 
   for (let i = 0; i < steps.length; i++) {
-    if (steps[i].q === -1) {
-      array[steps[i].x].color = "red";
-      array[steps[i].y].color = "red";
+    array[steps[i].x].color = "red";
+    array[steps[i].y].color = "red";
 
-      /* temp = array[steps[i].x];
-      array[steps[i].x] = array[steps[i].y];
-      array[steps[i].y] = temp; */
-
-      setArray([...array]);
-      await sleep(sortSpeed);
-
-      array[steps[i].x].color = COLUMNS_COLOR;
-      array[steps[i].y].color = COLUMNS_COLOR;
-    } else {
+    if (steps[i].q !== -1) {
       array[steps[i].x].value = steps[i].y;
-
-      /* temp = array[steps[i].x];
-      array[steps[i].x] = array[steps[i].y];
-      array[steps[i].y] = temp; */
-
-      setArray([...array]);
-      await sleep(sortSpeed);
     }
-  }
+    setArray([...array]);
+    await sleep(sortSpeed);
 
-  /* setArray([...array]); */
+    array[steps[i].x].color = COLUMNS_COLOR;
+    array[steps[i].y].color = COLUMNS_COLOR;
+  }
 
   setIsRunning(false);
 }

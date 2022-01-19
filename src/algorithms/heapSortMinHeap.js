@@ -1,127 +1,94 @@
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
-export default async function HeapSortMaxHeap(
+export default function HeapSortMaxHeap(
   array,
   setArray,
   sortSpeed,
   setIsRunning
 ) {
-  setIsRunning(true);
+  let steps = [];
+  let array2 = [...array];
 
-  /* buildMaxHeap(array, sortSpeed); */
-  let i = Math.floor(array.length / 2 - 1);
+  buildMinHeap(array2, steps);
 
-  while (i >= 0) {
-    /* heapify(array, i, array.length, sortSpeed); */
-    let index;
-    let leftChild;
-    let rightChild;
-    let temp;
-    let max = array.length;
-    let j = i;
-
-    while (j < max) {
-      index = j;
-
-      leftChild = 2 * j + 1;
-      rightChild = leftChild + 1;
-
-      if (leftChild < max && array[leftChild].value < array[index].value) {
-        index = leftChild;
-      }
-
-      if (rightChild < max && array[rightChild].value < array[index].value) {
-        index = rightChild;
-      }
-
-      if (index === j) {
-        break;
-      }
-      array[j].color = "red";
-      array[index].color = "red";
-
-      temp = array[j];
-      array[j] = array[index];
-      array[index] = temp;
-
-      setArray([...array]);
-      await sleep(sortSpeed);
-
-      array[j].color = COLUMNS_COLOR;
-      array[index].color = COLUMNS_COLOR;
-
-      j = index;
-    }
-
-    i--;
-  }
-
-  let lastElement = array.length - 1;
+  let lastElement = array2.length - 1;
   let temporary;
+
   while (lastElement > 0) {
-    array[0].color = "red";
-    array[lastElement].color = "red";
+    steps.push({ x: 0, y: lastElement });
 
-    temporary = array[0];
-    array[0] = array[lastElement];
-    array[lastElement] = temporary;
+    temporary = array2[0];
+    array2[0] = array2[lastElement];
+    array2[lastElement] = temporary;
 
-    setArray([...array]);
-    await sleep(sortSpeed);
-    array[0].color = COLUMNS_COLOR;
-    array[lastElement].color = COLUMNS_COLOR;
-
-    /* heapify(array, 0, lastElement, sortSpeed); */
-    let index;
-    let leftChild;
-    let rightChild;
-    let temp;
-    let j = 0;
-
-    while (j < lastElement) {
-      index = j;
-
-      leftChild = 2 * j + 1;
-      rightChild = leftChild + 1;
-
-      if (
-        leftChild < lastElement &&
-        array[leftChild].value < array[index].value
-      ) {
-        index = leftChild;
-      }
-
-      if (
-        rightChild < lastElement &&
-        array[rightChild].value < array[index].value
-      ) {
-        index = rightChild;
-      }
-
-      if (index === j) {
-        break;
-      }
-      array[j].color = "red";
-      array[index].color = "red";
-
-      temp = array[j];
-      array[j] = array[index];
-      array[index] = temp;
-
-      setArray([...array]);
-      await sleep(sortSpeed);
-
-      array[j].color = COLUMNS_COLOR;
-      array[index].color = COLUMNS_COLOR;
-
-      j = index;
-    }
+    heapify(array2, 0, lastElement, steps);
 
     lastElement--;
   }
 
-  setArray([...array]);
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+}
+
+const buildMinHeap = (array, steps) => {
+  let i = Math.floor(array.length / 2 - 1);
+
+  while (i >= 0) {
+    heapify(array, i, array.length, steps);
+    i--;
+  }
+};
+
+const heapify = async (heap, i, max, steps) => {
+  let index;
+  let leftChild;
+  let rightChild;
+  let temp;
+
+  while (i < max) {
+    index = i;
+
+    leftChild = 2 * i + 1;
+    rightChild = leftChild + 1;
+
+    if (leftChild < max && heap[leftChild].value < heap[index].value) {
+      index = leftChild;
+    }
+
+    if (rightChild < max && heap[rightChild].value < heap[index].value) {
+      index = rightChild;
+    }
+
+    if (index === i) {
+      return;
+    }
+
+    steps.push({ x: i, y: index });
+    temp = heap[i];
+    heap[i] = heap[index];
+    heap[index] = temp;
+
+    i = index;
+  }
+};
+
+async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
+  let temp = 0;
+  setIsRunning(true);
+  console.log(steps.length);
+  for (let i = 0; i < steps.length; i++) {
+    array[steps[i].x].color = "red";
+    array[steps[i].y].color = "red";
+
+    temp = array[steps[i].x].value;
+    array[steps[i].x].value = array[steps[i].y].value;
+    array[steps[i].y].value = temp;
+
+    setArray([...array]);
+    await sleep(sortSpeed);
+    array[steps[i].x].color = COLUMNS_COLOR;
+    array[steps[i].y].color = COLUMNS_COLOR;
+  }
 
   setIsRunning(false);
 }

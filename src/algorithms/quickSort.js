@@ -1,71 +1,70 @@
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
-export default async function QuickSort(
-  array,
-  setArray,
-  sortSpeed,
-  setIsRunning
-) {
-  const MAX_LEVELS = 1000;
-  let piv,
-    i = 0,
-    L,
-    R;
-  let beg = [],
-    end = [];
-  const n = array.length;
-  beg[0] = 0;
-  end[0] = n;
-  let auxiliaryArray = [...array];
+export default function QuickSort(array, setArray, sortSpeed, setIsRunning) {
+  let array2 = [...array];
+  let steps = [];
 
-  setIsRunning(true);
+  quickSort(array2, 0, array2.length - 1, steps);
 
-  while (i >= 0) {
-    L = beg[i];
-    R = end[i] - 1;
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+}
 
-    if (L < R) {
-      piv = auxiliaryArray[L];
+function quickSort(arr, first, last, steps) {
+  let i, j, pivot, temp;
 
-      if (i == MAX_LEVELS - 1) return;
-      while (L < R) {
-        while (auxiliaryArray[R].value >= piv.value && L < R) {
-          auxiliaryArray[L].color = "red";
-          auxiliaryArray[R].color = "red";
+  if (first < last) {
+    pivot = first;
 
-          setArray([...auxiliaryArray]);
-          await sleep(sortSpeed);
-          auxiliaryArray[L].color = COLUMNS_COLOR;
-          auxiliaryArray[R].color = COLUMNS_COLOR;
-          R--;
-        }
-        if (L < R) {
-          auxiliaryArray[L++] = auxiliaryArray[R];
-        }
-        while (auxiliaryArray[L].value <= piv.value && L < R) {
-          auxiliaryArray[L].color = "red";
-          auxiliaryArray[R].color = "red";
+    i = first;
+    j = last;
 
-          setArray([...auxiliaryArray]);
-          await sleep(sortSpeed);
-          auxiliaryArray[L].color = COLUMNS_COLOR;
-          auxiliaryArray[R].color = COLUMNS_COLOR;
-          L++;
-        }
-        if (L < R) {
-          auxiliaryArray[R--] = auxiliaryArray[L];
-        }
+    while (i < j) {
+      steps.push({ x: i, y: j, q: -1 });
+      while (arr[i].value <= arr[pivot].value && i < last) {
+        i++;
       }
-      auxiliaryArray[L] = piv;
-      beg[i + 1] = L + 1;
-      end[i + 1] = end[i];
-      end[i++] = L;
-    } else {
-      i--;
+      while (arr[j].value > arr[pivot].value) {
+        j--;
+      }
+      if (i < j) {
+        steps.push({ x: i, y: j, q: 1 });
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
     }
+    steps.push({ x: pivot, y: j, q: 1 });
+    temp = arr[pivot];
+    arr[pivot] = arr[j];
+    arr[j] = temp;
+    quickSort(arr, first, j - 1, steps);
+    quickSort(arr, j + 1, last, steps);
+  }
+}
+
+async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
+  let temp = 0;
+  setIsRunning(true);
+  console.log(steps.length);
+  for (let i = 0; i < steps.length; i++) {
+    array[steps[i].x].color = "red";
+    array[steps[i].y].color = "red";
+
+    if (steps[i].q !== -1) {
+      temp = array[steps[i].x].value;
+      array[steps[i].x].value = array[steps[i].y].value;
+      array[steps[i].y].value = temp;
+    }
+
+    setArray([...array]);
+    await sleep(sortSpeed);
+
+    array[steps[i].x].color = COLUMNS_COLOR;
+    array[steps[i].y].color = COLUMNS_COLOR;
   }
 
+  setArray([...array]);
+
   setIsRunning(false);
-  setArray([...auxiliaryArray]);
 }

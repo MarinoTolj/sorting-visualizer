@@ -1,27 +1,19 @@
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
-export default async function RadixSortLSD(
-  array,
-  setArray,
-  sortSpeed,
-  setIsRunning
-) {
+export default function RadixSortLSD(array, setArray, sortSpeed, setIsRunning) {
   const maxLength = largestNum(array);
+  let array2 = [...array];
+  let steps = [];
 
-  setIsRunning(true);
   for (let i = 0; i < maxLength; i++) {
     let buckets = Array.from({ length: 10 }, () => []);
 
-    for (let j = 0; j < array.length; j++) {
-      let num = getDigit(array[j], i);
-
+    for (let j = 0; j < array2.length; j++) {
+      let num = getDigit(array2[j], i);
+      steps.push({ x: j, y: -1 });
       if (num !== undefined) {
-        buckets[num].push(array[j]);
-        array[j].color = "red";
-        setArray([...array]);
-        await sleep(sortSpeed);
-        array[j].color = COLUMNS_COLOR;
+        buckets[num].push(array2[j]);
       }
     }
 
@@ -29,20 +21,32 @@ export default async function RadixSortLSD(
     let g = 0;
     for (let k = 0; k < 10; k++) {
       for (let l = 0; l < buckets[k].length; l++) {
-        array[g] = buckets[k][l];
-        array[g].color = "red";
-        setArray([...array]);
-        await sleep(sortSpeed);
-        array[g].color = COLUMNS_COLOR;
+        steps.push({ x: g, y: buckets[k][l].value });
+        array2[g] = buckets[k][l];
         g++;
       }
     }
-
-    setArray([...array]);
-    await sleep(sortSpeed);
   }
 
-  setArray([...array]);
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+}
+
+async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
+  console.log(steps);
+  setIsRunning(true);
+
+  for (let i = 0; i < steps.length; i++) {
+    array[steps[i].x].color = "red";
+
+    if (steps[i].q !== -1) {
+      array[steps[i].x].value = steps[i].y;
+    }
+    setArray([...array]);
+    await sleep(sortSpeed);
+
+    array[steps[i].x].color = COLUMNS_COLOR;
+  }
+
   setIsRunning(false);
 }
 
