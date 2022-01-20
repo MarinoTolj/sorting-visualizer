@@ -45,25 +45,25 @@ function Merge(
   let j = middleIndex + 1;
 
   while (i <= middleIndex && j <= endIndex) {
-    steps.push({ x: i, y: j, q: -1 });
+    /* steps.push({ x: i, y: j, q: -1 }); */
     if (auxiliaryArray[i].value <= auxiliaryArray[j].value) {
-      steps.push({ x: k, y: auxiliaryArray[i].value, q: 1 });
+      steps.push({ x: i, y: j, q: k, z: auxiliaryArray[i].value });
       mainArray[k++] = auxiliaryArray[i++];
     } else {
-      steps.push({ x: k, y: auxiliaryArray[j].value, q: 1 });
+      steps.push({ x: i, y: j, q: k, z: auxiliaryArray[j].value });
       mainArray[k++] = auxiliaryArray[j++];
     }
   }
 
   while (i <= middleIndex) {
-    steps.push({ x: i, y: i, q: -1 });
-    steps.push({ x: k, y: auxiliaryArray[i].value, q: 1 });
+    /* steps.push({ x: i, y: i, q: -1 }); */
+    steps.push({ x: i, y: j, q: k, z: auxiliaryArray[i].value });
     mainArray[k++] = auxiliaryArray[i++];
   }
 
   while (j <= endIndex) {
-    steps.push({ x: j, y: j, q: -1 });
-    steps.push({ x: k, y: auxiliaryArray[j].value, q: 1 });
+    /* steps.push({ x: j, y: j, q: -1 }); */
+    steps.push({ x: i, y: j, q: k, z: auxiliaryArray[j].value });
     mainArray[k++] = auxiliaryArray[j++];
   }
 
@@ -98,18 +98,35 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
   console.log(steps);
   setIsRunning(true);
 
-  for (let i = 0; i < steps.length; i++) {
-    array[steps[i].x].color = "red";
-    array[steps[i].y].color = "red";
+  /* for (let i = 0; i < steps.length; i++) {
+    if (steps[i].q === -1) {
+      array[steps[i].x].color = "red";
+      array[steps[i].y].color = "red";
 
-    if (steps[i].q !== -1) {
+      setArray([...array]);
+      await sleep(sortSpeed);
+
+      array[steps[i].x].color = COLUMNS_COLOR;
+      array[steps[i].y].color = COLUMNS_COLOR;
+    } else {
       array[steps[i].x].value = steps[i].y;
     }
+  } */
+  for (let i = 0; i < steps.length; i++) {
+    array[steps[i].x].color = "red";
+    if (array[steps[i].y] !== undefined) {
+      array[steps[i].y].color = "red";
+    }
+
+    array[steps[i].q].value = steps[i].z;
+
     setArray([...array]);
     await sleep(sortSpeed);
 
     array[steps[i].x].color = COLUMNS_COLOR;
-    array[steps[i].y].color = COLUMNS_COLOR;
+    if (array[steps[i].y] !== undefined) {
+      array[steps[i].y].color = COLUMNS_COLOR;
+    }
   }
 
   setIsRunning(false);
