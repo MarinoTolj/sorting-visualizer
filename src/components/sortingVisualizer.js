@@ -136,7 +136,10 @@ export default function SortingVisualizer() {
 
   return (
     <div className={styles.container}>
-      Number of steps to sort array: {steps.total}, remaining {steps.remaining}
+      <h2>
+        Number of steps to sort array: {steps.total}, remaining{" "}
+        {steps.remaining}
+      </h2>
       <Buttons
         handleReset={handleReset}
         isRunning={isRunning}

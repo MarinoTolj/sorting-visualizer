@@ -31,9 +31,9 @@ export default function ArrayList({ array, description, arraySize }) {
           {/* {index} */}
         </div>
       ))}
-      {description && (
+      {/* {description && (
         <section className={styles.sectioncontainer}>{description}</section>
-      )}
+      )} */}
     </div>
   );
 }

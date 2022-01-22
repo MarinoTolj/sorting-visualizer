@@ -5,7 +5,8 @@ export default function SelectionSort(
   array,
   setArray,
   sortSpeed,
-  setIsRunning
+  setIsRunning,
+  setSteps
 ) {
   let temp = 0;
   let min = 0;
@@ -30,11 +31,17 @@ export default function SelectionSort(
     }
   }
 
-  console.log(steps.length);
-  /* Vizualize(array, setArray, steps, sortSpeed, setIsRunning); */
+  Vizualize(array, setArray, steps, setSteps, sortSpeed, setIsRunning);
 }
 
-async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
+async function Vizualize(
+  array,
+  setArray,
+  steps,
+  setSteps,
+  sortSpeed,
+  setIsRunning
+) {
   let temp = 0;
   setIsRunning(true);
 
@@ -46,6 +53,7 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
       await sleep(sortSpeed);
 
       array[steps[i].x].color = COLUMNS_COLOR;
+      setSteps({ total: steps.length, remaining: steps.length - i - 1 });
     } else {
       array[steps[i].x].color = "red";
       array[steps[i].y].color = "red";
@@ -59,6 +67,7 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
 
       array[steps[i].x].color = COLUMNS_COLOR;
       array[steps[i].y].color = COLUMNS_COLOR;
+      setSteps({ total: steps.length, remaining: steps.length - i - 1 });
     }
   }
 

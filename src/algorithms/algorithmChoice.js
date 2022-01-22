@@ -30,11 +30,11 @@ export default function AlgorithmChoice(
       break;
     case "Insertion sort":
       setDescription(algorithmsDescription.InsertionSort);
-      InsertionSort(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
+      InsertionSort(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     case "Selection sort":
       setDescription(algorithmsDescription.SelectionSort);
-      SelectionSort(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
+      SelectionSort(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     case "Merge sort-recursive":
       setDescription(algorithmsDescription.MergeSort);
@@ -43,7 +43,7 @@ export default function AlgorithmChoice(
         setArray,
         sortSpeed,
         setIsRunning,
-        steps,
+
         setSteps
       );
       break;
@@ -54,14 +54,14 @@ export default function AlgorithmChoice(
         setArray,
         sortSpeed,
         setIsRunning,
-        steps,
+
         setSteps
       );
       break;
 
     case "Quick sort":
       setDescription(algorithmsDescription.QuickSort);
-      QuickSort(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
+      QuickSort(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     case "Heap sort max-heap":
       setDescription(algorithmsDescription.HeapSort);
@@ -70,7 +70,7 @@ export default function AlgorithmChoice(
         setArray,
         sortSpeed,
         setIsRunning,
-        steps,
+
         setSteps
       );
       break;
@@ -81,7 +81,7 @@ export default function AlgorithmChoice(
         setArray,
         sortSpeed,
         setIsRunning,
-        steps,
+
         setSteps
       );
       break;
@@ -93,22 +93,22 @@ export default function AlgorithmChoice(
         setArray,
         sortSpeed,
         setIsRunning,
-        steps,
+
         setSteps,
         bucketSize
       );
       break;
     case "Radix sort lsd":
       setDescription(algorithmsDescription.RadixSort);
-      RadixSortLSD(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
+      RadixSortLSD(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     case "Radix sort msd":
       setDescription(algorithmsDescription.RadixSort);
-      RadixSortMSD(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
+      RadixSortMSD(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     case "Counting sort":
       setDescription(algorithmsDescription.CountingSort);
-      CountingSort(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
+      CountingSort(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     default:
       break;

@@ -5,7 +5,8 @@ export default function InsertionSort(
   array,
   setArray,
   sortSpeed,
-  setIsRunning
+  setIsRunning,
+  setSteps
 ) {
   let temp = 0;
 
@@ -23,11 +24,18 @@ export default function InsertionSort(
       j--;
     }
   }
-  console.log(steps.length);
-  /* Vizualize(array, setArray, steps, sortSpeed, setIsRunning); */
+  setSteps({ total: steps.length, remaining: steps.length });
+  Vizualize(array, setArray, steps, setSteps, sortSpeed, setIsRunning);
 }
 
-async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
+async function Vizualize(
+  array,
+  setArray,
+  steps,
+  setSteps,
+  sortSpeed,
+  setIsRunning
+) {
   let temp = 0;
   setIsRunning(true);
 
@@ -42,6 +50,7 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
     await sleep(sortSpeed);
 
     array[steps[i].y].color = COLUMNS_COLOR;
+    setSteps({ total: steps.length, remaining: steps.length - i - 1 });
   }
 
   setArray([...array]);
