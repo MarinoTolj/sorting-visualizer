@@ -19,10 +19,11 @@ export default function SortingVisualizer() {
   const [array, setArray] = useState(GenerateRandomArray());
   const [description, setDescription] = useState("");
   const [bucketSize, setBucketSize] = useState(15);
+  const [steps, setSteps] = useState({ total: 0, remaining: 0 });
+  /* const [totalSteps, setTotalSteps] = useState(0); */
 
   //checks if algorithm is running which makes other buttons disabled because it leads to problems
   const [isRunning, setIsRunning] = useState(false);
-  const [animations, setAnimations] = useState([]);
 
   useEffect(() => {
     handleReset();
@@ -47,7 +48,8 @@ export default function SortingVisualizer() {
       setDescription,
       setIsRunning,
       e.target.value,
-      bucketSize
+      bucketSize,
+      setSteps
     );
   };
 
@@ -134,6 +136,7 @@ export default function SortingVisualizer() {
 
   return (
     <div className={styles.container}>
+      Number of steps to sort array: {steps.total}, remaining {steps.remaining}
       <Buttons
         handleReset={handleReset}
         isRunning={isRunning}
@@ -153,7 +156,6 @@ export default function SortingVisualizer() {
         setSortSpeed={setSortSpeed}
         isRunning={isRunning}
       />
-
       <ArrayList
         array={array}
         description={description}

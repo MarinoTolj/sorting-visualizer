@@ -36,7 +36,6 @@ export default function BucketSort(
     allBuckets[i].push(array2[j]);
     steps.push({ x: j, y: -1 });
   }
-  console.log(allBuckets);
 
   let g = 0;
   for (let k = 0; k < bucketCount; k++) {
@@ -47,14 +46,14 @@ export default function BucketSort(
       g++;
     }
   }
-
+  console.log(steps.length);
   Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
 }
 
 async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
   let temp = 0;
   setIsRunning(true);
-  console.log(steps.length);
+
   for (let i = 0; i < steps.length; i++) {
     array[steps[i].x].color = "red";
 

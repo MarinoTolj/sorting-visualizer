@@ -15,9 +15,10 @@ export default function SelectionSort(
   for (let i = 0; i < tempArray.length; i++) {
     min = i;
     for (let j = i + 1; j < tempArray.length; j++) {
+      steps.push({ x: j, y: -1 });
       if (tempArray[j].value < tempArray[min].value) {
         min = j;
-        steps.push({ x: min, y: -1 });
+        /* steps.push({ x: min, y: -1 }); */
       }
     }
 
@@ -28,15 +29,15 @@ export default function SelectionSort(
       steps.push({ x: min, y: i });
     }
   }
-  console.log(array);
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+  console.log(steps.length);
+  /* Vizualize(array, setArray, steps, sortSpeed, setIsRunning); */
 }
 
 async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
   let temp = 0;
   setIsRunning(true);
-  console.log(steps.length);
+
   for (let i = 0; i < steps.length; i++) {
     if (steps[i].y === -1) {
       array[steps[i].x].color = "red";

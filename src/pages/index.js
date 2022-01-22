@@ -7,10 +7,6 @@ import { useState, useEffect } from "react";
 export default function Index() {
   const [toggle, setToggle] = useState(false);
 
-  /* useEffect(() => {
-    console.log(toggle);
-  }, [toggle]); */
-
   return (
     <div>
       <h1 style={{ display: "flex", justifyContent: "center" }}>

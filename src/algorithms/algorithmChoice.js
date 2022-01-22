@@ -19,58 +19,96 @@ export default function AlgorithmChoice(
   setDescription,
   setIsRunning,
   name,
-  bucketSize
+  bucketSize,
+  setSteps
 ) {
+  let steps = [];
   switch (name) {
     case "Bubble sort":
       setDescription(algorithmsDescription.BubbleSort);
-      BubbleSort(array, setArray, sortSpeed, setIsRunning);
+      BubbleSort(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     case "Insertion sort":
       setDescription(algorithmsDescription.InsertionSort);
-      InsertionSort(array, setArray, sortSpeed, setIsRunning);
+      InsertionSort(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
       break;
     case "Selection sort":
       setDescription(algorithmsDescription.SelectionSort);
-      SelectionSort(array, setArray, sortSpeed, setIsRunning);
+      SelectionSort(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
       break;
     case "Merge sort-recursive":
       setDescription(algorithmsDescription.MergeSort);
-      mergeSortRecursive(array, setArray, sortSpeed, setIsRunning);
+      mergeSortRecursive(
+        array,
+        setArray,
+        sortSpeed,
+        setIsRunning,
+        steps,
+        setSteps
+      );
       break;
     case "Merge sort-non-recursive":
       setDescription(algorithmsDescription.MergeSort);
-      mergeSortNonRecursive(array, setArray, sortSpeed, setIsRunning);
+      mergeSortNonRecursive(
+        array,
+        setArray,
+        sortSpeed,
+        setIsRunning,
+        steps,
+        setSteps
+      );
       break;
 
     case "Quick sort":
       setDescription(algorithmsDescription.QuickSort);
-      QuickSort(array, setArray, sortSpeed, setIsRunning);
+      QuickSort(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
       break;
     case "Heap sort max-heap":
       setDescription(algorithmsDescription.HeapSort);
-      HeapSortMaxHeap(array, setArray, sortSpeed, setIsRunning);
+      HeapSortMaxHeap(
+        array,
+        setArray,
+        sortSpeed,
+        setIsRunning,
+        steps,
+        setSteps
+      );
       break;
     case "Heap sort min-heap":
       setDescription(algorithmsDescription.HeapSort);
-      HeapSortMinHeap(array, setArray, sortSpeed, setIsRunning);
+      HeapSortMinHeap(
+        array,
+        setArray,
+        sortSpeed,
+        setIsRunning,
+        steps,
+        setSteps
+      );
       break;
 
     case "Bucket sort":
       setDescription(algorithmsDescription.BucketSort);
-      BucketSort(array, setArray, sortSpeed, setIsRunning, bucketSize);
+      BucketSort(
+        array,
+        setArray,
+        sortSpeed,
+        setIsRunning,
+        steps,
+        setSteps,
+        bucketSize
+      );
       break;
     case "Radix sort lsd":
       setDescription(algorithmsDescription.RadixSort);
-      RadixSortLSD(array, setArray, sortSpeed, setIsRunning);
+      RadixSortLSD(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
       break;
     case "Radix sort msd":
       setDescription(algorithmsDescription.RadixSort);
-      RadixSortMSD(array, setArray, sortSpeed, setIsRunning);
+      RadixSortMSD(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
       break;
     case "Counting sort":
       setDescription(algorithmsDescription.CountingSort);
-      CountingSort(array, setArray, sortSpeed, setIsRunning);
+      CountingSort(array, setArray, sortSpeed, setIsRunning, steps, setSteps);
       break;
     default:
       break;
