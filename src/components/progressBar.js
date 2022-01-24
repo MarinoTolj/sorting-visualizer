@@ -2,29 +2,45 @@ import React from "react";
 import * as styles from "../styles/progressBar.module.css";
 import classNames from "classnames";
 
+const DEFAULT = "rgba(233,236,239,255)";
+const RED = "rgba(220,53,69,255)";
+const YELLOW = "rgba(255,193,7,255)";
+const GREEN = "rgba(80,196,153,255)";
+
+//rgba(25,135,84,255)
+
 const ProgressBar = ({ steps }) => {
-  const variant =
+  const color =
     steps.done / steps.total < 0.5
-      ? "red"
+      ? RED
       : steps.done / steps.total >= 0.5 && steps.done / steps.total < 0.75
-      ? "yellow"
-      : "green";
-  const style = {
+      ? YELLOW
+      : steps.done / steps.total >= 0.74
+      ? GREEN
+      : DEFAULT;
+
+  const divStyle = {
     width: "1280px",
     height: "30px",
-    backgroundColor: variant,
-    border: "1px solid grey",
-    borderRadius: "5px",
+    backgroundColor: DEFAULT,
+    borderRadius: "10px",
+    marginBottom: "5px",
   };
 
+  const barStyle = {
+    width: maps(steps.done / steps.total, 0, 1, 0, 1280),
+    height: "30px",
+    backgroundColor: color,
+    borderRadius: "10px",
+  };
+
+  function maps(n, start1, stop1, start2, stop2) {
+    return ((n - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
+  }
+
   return (
-    <div style={style}>
-      {/* <progress
-        className={styles.progressbar}
-        style={style}
-        value={steps.done}
-        max={steps.total}
-      /> */}
+    <div style={divStyle}>
+      <div style={barStyle}></div>
     </div>
   );
 };
