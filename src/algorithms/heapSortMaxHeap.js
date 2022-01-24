@@ -5,7 +5,8 @@ export default function HeapSortMaxHeap(
   array,
   setArray,
   sortSpeed,
-  setIsRunning
+  setIsRunning,
+  setSteps
 ) {
   let steps = [];
   let array2 = [...array];
@@ -25,7 +26,7 @@ export default function HeapSortMaxHeap(
     lastElement--;
   }
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
 const buildMaxHeap = (array, steps) => {
@@ -70,10 +71,16 @@ const heapify = async (heap, i, max, steps) => {
   }
 };
 
-async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
+async function Vizualize(
+  array,
+  setArray,
+  steps,
+  sortSpeed,
+  setIsRunning,
+  setSteps
+) {
   let temp = 0;
   setIsRunning(true);
-  console.log(steps.length);
   for (let i = 0; i < steps.length; i++) {
     array[steps[i].x].color = "red";
     array[steps[i].y].color = "red";
@@ -86,6 +93,7 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
     await sleep(sortSpeed);
     array[steps[i].x].color = COLUMNS_COLOR;
     array[steps[i].y].color = COLUMNS_COLOR;
+    setSteps({ total: steps.length, done: i + 1 });
   }
 
   setIsRunning(false);

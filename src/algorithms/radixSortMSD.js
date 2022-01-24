@@ -25,9 +25,6 @@ export default async function RadixSort(
       }
     }
 
-    console.log(buckets);
-
-    /* array = buckets.flat(); */
     let g = 0;
     for (let k = 0; k < 10; k++) {
       for (let l = 0; l < buckets[k].length; l++) {
@@ -56,7 +53,6 @@ const getDigit = (num, digitsPlace, maxLength) => {
   const temp = stringNumber.join("");
 
   const digit = temp[digitsPlace];
-  /* console.log(temp, digit, digitsPlace); */
 
   return digit;
 };

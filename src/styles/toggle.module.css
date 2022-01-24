@@ -1,5 +1,10 @@
 /* https://www.w3schools.com/howto/howto_css_switch.asp */
 
+.togglecontainer {
+  display: flex;
+  justify-content: center;
+}
+
 .switch1 {
   position: relative;
   display: inline-block;

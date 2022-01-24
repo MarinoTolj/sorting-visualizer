@@ -1,0 +1,18 @@
+.progressbar {
+  width: 1280px;
+  height: 35px;
+}
+
+progress {
+  -webkit-appearance: none;
+}
+
+progress::-webkit-progress-value {
+  background: linear-gradient(
+    90deg,
+    rgba(237, 7, 7, 1) 0%,
+    rgba(255, 12, 12, 1) 50%,
+    rgba(233, 255, 12, 1) 76%,
+    rgba(66, 255, 12, 1) 100%
+  );
+}

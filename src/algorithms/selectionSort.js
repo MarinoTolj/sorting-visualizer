@@ -16,10 +16,9 @@ export default function SelectionSort(
   for (let i = 0; i < tempArray.length; i++) {
     min = i;
     for (let j = i + 1; j < tempArray.length; j++) {
-      steps.push({ x: j, y: -1 });
+      steps.push({ x: j, y: -1, q: min });
       if (tempArray[j].value < tempArray[min].value) {
         min = j;
-        /* steps.push({ x: min, y: -1 }); */
       }
     }
 
@@ -27,7 +26,7 @@ export default function SelectionSort(
       temp = tempArray[min];
       tempArray[min] = tempArray[i];
       tempArray[i] = temp;
-      steps.push({ x: min, y: i });
+      steps.push({ x: min, y: i, q: min });
     }
   }
 
@@ -46,29 +45,22 @@ async function Vizualize(
   setIsRunning(true);
 
   for (let i = 0; i < steps.length; i++) {
-    if (steps[i].y === -1) {
-      array[steps[i].x].color = "red";
+    array[steps[i].x].color = "red";
+    array[steps[i].q].color = "green";
 
-      setArray([...array]);
-      await sleep(sortSpeed);
-
-      array[steps[i].x].color = COLUMNS_COLOR;
-      setSteps({ total: steps.length, remaining: steps.length - i - 1 });
-    } else {
-      array[steps[i].x].color = "red";
-      array[steps[i].y].color = "red";
-
+    if (steps[i].y !== -1) {
       temp = array[steps[i].x].value;
       array[steps[i].x].value = array[steps[i].y].value;
       array[steps[i].y].value = temp;
-
-      setArray([...array]);
-      await sleep(sortSpeed);
-
-      array[steps[i].x].color = COLUMNS_COLOR;
-      array[steps[i].y].color = COLUMNS_COLOR;
-      setSteps({ total: steps.length, remaining: steps.length - i - 1 });
     }
+
+    setArray([...array]);
+    await sleep(sortSpeed);
+
+    array[steps[i].x].color = COLUMNS_COLOR;
+    array[steps[i].q].color = COLUMNS_COLOR;
+
+    setSteps({ total: steps.length, done: i + 1 });
   }
 
   setIsRunning(false);

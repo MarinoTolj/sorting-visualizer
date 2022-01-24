@@ -8,7 +8,6 @@ export default function ArrayList({ array, description, arraySize }) {
   const [arrayWidth, setArrayWidth] = useState(3);
 
   useEffect(() => {
-    /* console.log(window.innerWidth); */
     if (window.innerWidth > 1280) {
       setArrayWidth((1280 - arraySize - 10) / arraySize);
     } else {
@@ -27,9 +26,7 @@ export default function ArrayList({ array, description, arraySize }) {
             height: `${element.value}px`,
             backgroundColor: `${element.color}`,
           }}
-        >
-          {/* {index} */}
-        </div>
+        ></div>
       ))}
       {/* {description && (
         <section className={styles.sectioncontainer}>{description}</section>

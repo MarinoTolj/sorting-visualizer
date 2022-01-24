@@ -24,7 +24,6 @@ export default function InsertionSort(
       j--;
     }
   }
-  setSteps({ total: steps.length, remaining: steps.length });
   Vizualize(array, setArray, steps, setSteps, sortSpeed, setIsRunning);
 }
 
@@ -50,7 +49,7 @@ async function Vizualize(
     await sleep(sortSpeed);
 
     array[steps[i].y].color = COLUMNS_COLOR;
-    setSteps({ total: steps.length, remaining: steps.length - i - 1 });
+    setSteps({ total: steps.length, done: i + 1 });
   }
 
   setArray([...array]);

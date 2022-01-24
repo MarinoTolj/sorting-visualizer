@@ -1,13 +1,19 @@
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
-export default function QuickSort(array, setArray, sortSpeed, setIsRunning) {
+export default function QuickSort(
+  array,
+  setArray,
+  sortSpeed,
+  setIsRunning,
+  setSteps
+) {
   let array2 = [...array];
   let steps = [];
-  console.log(array.length);
+
   quickSort(array2, 0, array2.length - 1, steps);
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
 function quickSort(arr, first, last, steps) {
@@ -45,7 +51,14 @@ function quickSort(arr, first, last, steps) {
   }
 }
 
-async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
+async function Vizualize(
+  array,
+  setArray,
+  steps,
+  sortSpeed,
+  setIsRunning,
+  setSteps
+) {
   let temp = 0;
   setIsRunning(true);
 
@@ -75,6 +88,7 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
       array[steps[i].x].color = COLUMNS_COLOR;
       array[steps[i].q].color = COLUMNS_COLOR;
     }
+    setSteps({ total: steps.length, done: i + 1 });
   }
 
   setArray([...array]);

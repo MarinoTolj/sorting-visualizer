@@ -22,12 +22,12 @@ export default function AlgorithmChoice(
   bucketSize,
   setSteps
 ) {
-  let steps = [];
   switch (name) {
     case "Bubble sort":
       setDescription(algorithmsDescription.BubbleSort);
       BubbleSort(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
+
     case "Insertion sort":
       setDescription(algorithmsDescription.InsertionSort);
       InsertionSort(array, setArray, sortSpeed, setIsRunning, setSteps);
@@ -38,25 +38,11 @@ export default function AlgorithmChoice(
       break;
     case "Merge sort-recursive":
       setDescription(algorithmsDescription.MergeSort);
-      mergeSortRecursive(
-        array,
-        setArray,
-        sortSpeed,
-        setIsRunning,
-
-        setSteps
-      );
+      mergeSortRecursive(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     case "Merge sort-non-recursive":
       setDescription(algorithmsDescription.MergeSort);
-      mergeSortNonRecursive(
-        array,
-        setArray,
-        sortSpeed,
-        setIsRunning,
-
-        setSteps
-      );
+      mergeSortNonRecursive(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
 
     case "Quick sort":
@@ -65,25 +51,11 @@ export default function AlgorithmChoice(
       break;
     case "Heap sort max-heap":
       setDescription(algorithmsDescription.HeapSort);
-      HeapSortMaxHeap(
-        array,
-        setArray,
-        sortSpeed,
-        setIsRunning,
-
-        setSteps
-      );
+      HeapSortMaxHeap(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
     case "Heap sort min-heap":
       setDescription(algorithmsDescription.HeapSort);
-      HeapSortMinHeap(
-        array,
-        setArray,
-        sortSpeed,
-        setIsRunning,
-
-        setSteps
-      );
+      HeapSortMinHeap(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
 
     case "Bucket sort":
@@ -93,7 +65,6 @@ export default function AlgorithmChoice(
         setArray,
         sortSpeed,
         setIsRunning,
-
         setSteps,
         bucketSize
       );

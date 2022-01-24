@@ -5,9 +5,9 @@ export default async function CountingSort(
   array,
   setArray,
   sortSpeed,
-  setIsRunning
+  setIsRunning,
+  setSteps
 ) {
-  /* setIsRunning(true); */
   let minValue = array[0].value,
     maxValue = array[0].value;
 
@@ -30,26 +30,32 @@ export default async function CountingSort(
   }
 
   for (i = 0; i < len; i++) {
-    steps.push({ x: i, y: -1 });
+    steps.push({ x: i, y: -1, q: -1 });
 
     count[array[i].value]++;
   }
 
   for (i = minValue; i <= maxValue; i++) {
+    steps.push({ x: j, y: i, q: -1 });
     while (count[i] > 0) {
-      steps.push({ x: j, y: i });
+      steps.push({ x: j, y: i, q: 1 });
       j++;
       count[i]--;
     }
   }
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
-async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
-  let temp = 0;
+async function Vizualize(
+  array,
+  setArray,
+  steps,
+  sortSpeed,
+  setIsRunning,
+  setSteps
+) {
   setIsRunning(true);
-  console.log(steps);
 
   for (let i = 0; i < steps.length; i++) {
     array[steps[i].x].color = "red";
@@ -62,6 +68,7 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
     await sleep(sortSpeed);
 
     array[steps[i].x].color = COLUMNS_COLOR;
+    setSteps({ total: steps.length, done: i + 1 });
   }
 
   setIsRunning(false);

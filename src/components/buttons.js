@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as styles from "../styles/sortingVisualizer.module.css";
 import { Button, Dropdown } from "react-bootstrap";
 
@@ -16,23 +16,11 @@ const Buttons = ({
       <Button variant="primary" onClick={handleReset} disabled={isRunning}>
         Reset
       </Button>
-      {/* <Button variant="success" onClick={bestCaseArray} disabled={isRunning}>
-        Best Case
-      </Button> */}
+
       <Button variant="danger" onClick={worstCaseArray} disabled={isRunning}>
         Worst Case
       </Button>
-      {/* {buttons.map((button, index) => (
-        <Button
-          key={index}
-          variant={button.variant}
-          onClick={handleAlgorithmChoice}
-          value={button.text}
-          disabled={isRunning}
-        >
-          {button.text}
-        </Button>
-      ))} */}
+
       <Button
         variant="secondary"
         onClick={handleAlgorithmChoice}
@@ -41,6 +29,7 @@ const Buttons = ({
       >
         Bubble Sort
       </Button>
+
       <Button
         variant="secondary"
         onClick={handleAlgorithmChoice}
@@ -155,35 +144,6 @@ const Buttons = ({
           </Button>
         </Dropdown.Menu>
       </Dropdown>
-      {/* <Dropdown>
-        <Dropdown.Toggle
-          variant="secondary"
-          id="dropdown-basic"
-          disabled={isRunning}
-        >
-          Radix Sort
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          <Button
-            variant="secondary"
-            onClick={handleAlgorithmChoice}
-            disabled={isRunning}
-            value="Radix sort lsd"
-          >
-            LSD Variant
-          </Button>
-          <Dropdown.Divider />
-          <Button
-            variant="secondary"
-            onClick={handleAlgorithmChoice}
-            disabled={isRunning}
-            value="Radix sort msd"
-          >
-            MSD Variant
-          </Button>
-        </Dropdown.Menu>
-      </Dropdown> */}
       <Button
         variant="secondary"
         onClick={handleAlgorithmChoice}

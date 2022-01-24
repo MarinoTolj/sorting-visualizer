@@ -18,11 +18,12 @@ export default function BubbleSort(
   do {
     swapped = false;
     for (let j = 0; j < array2.length - 1; j++) {
+      steps.push({ x: j, y: j + 1, q: -1 });
       if (array2[j].value > array2[j + 1].value) {
         temp = array2[j];
         array2[j] = array2[j + 1];
         array2[j + 1] = temp;
-        steps.push({ x: j, y: j + 1 });
+        steps[steps.length - 1] = { x: j, y: j + 1, q: 1 };
         swapped = true;
       }
     }
@@ -40,21 +41,26 @@ async function Vizualize(
   setIsRunning
 ) {
   let temp = 0;
+
   setIsRunning(true);
 
   for (let i = 0; i < steps.length; i++) {
     array[steps[i].x].color = "red";
     array[steps[i].y].color = "red";
 
-    temp = array[steps[i].x].value;
-    array[steps[i].x].value = array[steps[i].y].value;
-    array[steps[i].y].value = temp;
+    if (steps[i].q !== -1) {
+      temp = array[steps[i].x].value;
+      array[steps[i].x].value = array[steps[i].y].value;
+      array[steps[i].y].value = temp;
+    }
 
     setArray([...array]);
     await sleep(sortSpeed);
+
     array[steps[i].x].color = COLUMNS_COLOR;
     array[steps[i].y].color = COLUMNS_COLOR;
-    setSteps({ total: steps.length, remaining: steps.length - i - 1 });
+
+    setSteps({ total: steps.length, done: i + 1 });
   }
 
   setIsRunning(false);

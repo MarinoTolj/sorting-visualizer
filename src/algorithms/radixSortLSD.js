@@ -1,7 +1,13 @@
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
 
-export default function RadixSortLSD(array, setArray, sortSpeed, setIsRunning) {
+export default function RadixSortLSD(
+  array,
+  setArray,
+  sortSpeed,
+  setIsRunning,
+  setSteps
+) {
   const maxLength = largestNum(array);
   let array2 = [...array];
   let steps = [];
@@ -17,7 +23,6 @@ export default function RadixSortLSD(array, setArray, sortSpeed, setIsRunning) {
       }
     }
 
-    /* array = buckets.flat(); */
     let g = 0;
     for (let k = 0; k < 10; k++) {
       for (let l = 0; l < buckets[k].length; l++) {
@@ -28,11 +33,17 @@ export default function RadixSortLSD(array, setArray, sortSpeed, setIsRunning) {
     }
   }
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
-async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
-  console.log(steps);
+async function Vizualize(
+  array,
+  setArray,
+  steps,
+  sortSpeed,
+  setIsRunning,
+  setSteps
+) {
   setIsRunning(true);
 
   for (let i = 0; i < steps.length; i++) {
@@ -45,6 +56,8 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
     await sleep(sortSpeed);
 
     array[steps[i].x].color = COLUMNS_COLOR;
+
+    setSteps({ total: steps.length, done: i + 1 });
   }
 
   setIsRunning(false);

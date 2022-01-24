@@ -7,10 +7,9 @@ export default function BucketSort(
   setArray,
   sortSpeed,
   setIsRunning,
+  setSteps,
   bucketSize
 ) {
-  setIsRunning(true);
-
   let i,
     minValue = array[0],
     maxValue = array[0];
@@ -46,12 +45,17 @@ export default function BucketSort(
       g++;
     }
   }
-  console.log(steps.length);
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning);
+  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
-async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
-  let temp = 0;
+async function Vizualize(
+  array,
+  setArray,
+  steps,
+  sortSpeed,
+  setIsRunning,
+  setSteps
+) {
   setIsRunning(true);
 
   for (let i = 0; i < steps.length; i++) {
@@ -63,9 +67,10 @@ async function Vizualize(array, setArray, steps, sortSpeed, setIsRunning) {
     await sleep(sortSpeed);
 
     array[steps[i].x].color = COLUMNS_COLOR;
+    setSteps({ total: steps.length, done: i + 1 });
   }
 
-  InsertionSort(array, setArray, sortSpeed, setIsRunning);
+  InsertionSort(array, setArray, sortSpeed, setIsRunning, setSteps);
 
   setIsRunning(false);
 }
