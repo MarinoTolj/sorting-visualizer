@@ -1,5 +1,4 @@
 import React from "react";
-import * as styles from "../styles/progressBar.module.css";
 import classNames from "classnames";
 
 const DEFAULT = "rgba(233,236,239,255)";

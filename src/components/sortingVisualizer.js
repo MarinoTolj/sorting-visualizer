@@ -7,6 +7,7 @@ import ArrayList from "./arrayList";
 import Inputs from "./inputs";
 import Buttons from "./buttons";
 import ProgressBar from "./progressBar";
+import { graphql } from "gatsby";
 
 export const COLUMNS_COLOR = "rgba(13,110,253,255)";
 
@@ -16,18 +17,14 @@ export default function SortingVisualizer({
   handleReset,
   arraySize,
   setArraySize,
+  description,
+  setDescription,
   children,
 }) {
   const [sortSpeed, setSortSpeed] = useState(5);
-  const [description, setDescription] = useState("");
+  /*  const [description, setDescription] = useState(""); */
   const [bucketSize, setBucketSize] = useState(15);
   const [steps, setSteps] = useState({ total: 0, done: 0 });
-  const variant =
-    steps.done / steps.total < 0.5
-      ? "danger"
-      : steps.done / steps.total >= 0.5 && steps.done / steps.total < 0.75
-      ? "warning"
-      : "success";
 
   //checks if algorithm is running which makes other buttons disabled because it leads to problems
   const [isRunning, setIsRunning] = useState(false);
@@ -57,21 +54,22 @@ export default function SortingVisualizer({
 
   return (
     <div className={styles.container}>
-      <h2>
+      <h3>
         Number of steps to sort array: {steps.done}/{steps.total}
-      </h2>
+      </h3>
+
       <ProgressBar steps={steps} />
-      {
-        <Buttons
-          handleReset={handleReset}
-          isRunning={isRunning}
-          handleAlgorithmChoice={handleAlgorithmChoice}
-          worstCaseArray={worstCaseArray}
-          bucketSize={bucketSize}
-          setBucketSize={setBucketSize}
-          arraySize={arraySize}
-        />
-      }
+
+      <Buttons
+        handleReset={handleReset}
+        isRunning={isRunning}
+        handleAlgorithmChoice={handleAlgorithmChoice}
+        worstCaseArray={worstCaseArray}
+        bucketSize={bucketSize}
+        setBucketSize={setBucketSize}
+        arraySize={arraySize}
+      />
+
       {children}
 
       <Inputs
@@ -93,3 +91,15 @@ export default function SortingVisualizer({
 export function sleep(sortSpeed) {
   return new Promise((resolve) => setTimeout(resolve, sortSpeed));
 }
+
+/* export const pageQuery = graphql`
+  query MyQuery {
+    markdownRemark {
+      frontmatter {
+        date
+        slug
+        title
+      }
+    }
+  }
+`; */

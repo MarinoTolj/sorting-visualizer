@@ -9,7 +9,7 @@ const Toggle = ({ setToggle }) => {
         <input type="checkbox" onChange={() => setToggle((prev) => !prev)} />
         <span className={classNames(styles.slider, styles.round)}></span>
       </label>
-      <p>Toggle me</p>
+      <p style={{ marginTop: "9px" }}>Double array</p>
     </div>
   );
 };

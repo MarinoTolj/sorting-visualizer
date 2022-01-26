@@ -4,15 +4,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Toggle from "../components/toggle";
 import { useState, useEffect } from "react";
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
+import { graphql } from "gatsby";
+import * as styles from "../styles/sortingVisualizer.module.css";
 
 const MIN_VALUE_OF_ARRAY = 5;
 const MAX_VALUE_OF_ARRAY = 200;
 
-export default function Index() {
+export default function Index({ data }) {
   const [toggle, setToggle] = useState(false);
   const [arraySize, setArraySize] = useState(32);
   const [array, setArray] = useState([]);
   const [secondaryArray, setSecondaryArray] = useState([]);
+  const [description, setDescription] = useState("");
+  const [secondaryDescription, setSecondaryDescription] = useState("");
+  const [className, setClassName] = useState(styles.sectioncontainer);
+  console.log(data.allMarkdownRemark.nodes[0].frontmatter.title);
 
   function handleReset() {
     GenerateRandomArray();
@@ -21,6 +27,12 @@ export default function Index() {
   useEffect(() => {
     handleReset();
   }, [arraySize]);
+
+  useEffect(() => {
+    if (toggle) {
+      setClassName(styles.doublesectioncontainer);
+    }
+  }, [toggle]);
 
   function GenerateRandomArray() {
     let array = [];
@@ -44,7 +56,9 @@ export default function Index() {
         color: COLUMNS_COLOR,
       });
     }
+    array.push({ value: 200, color: "red" });
     setArray([...array]);
+    secondaryArray.push({ value: 200, color: "red" });
     setSecondaryArray([...secondaryArray]);
   }
 
@@ -67,9 +81,12 @@ export default function Index() {
         handleReset={handleReset}
         arraySize={arraySize}
         setArraySize={setArraySize}
+        description={description}
+        setDescription={setDescription}
       >
         <Toggle setToggle={setToggle} />
       </SortingVisualizer>
+
       {toggle && (
         <SortingVisualizer
           array={secondaryArray}
@@ -77,8 +94,32 @@ export default function Index() {
           handleReset={handleReset}
           arraySize={arraySize}
           setArraySize={setArraySize}
+          description={secondaryDescription}
+          setDescription={setSecondaryDescription}
         />
       )}
+
+      <div className={className}>
+        {description && (
+          <section className={styles.section}>{description}</section>
+        )}
+        {secondaryDescription && toggle ? (
+          <section className={styles.section}>{secondaryDescription}</section>
+        ) : null}
+      </div>
     </div>
   );
 }
+
+export const pageQuery = graphql`
+  query MyQuery {
+    allMarkdownRemark {
+      nodes {
+        html
+        frontmatter {
+          title
+        }
+      }
+    }
+  }
+`;
