@@ -14,7 +14,7 @@ export default async function mergeSortNonRecursive(
 
   bottomUpSort(auxiliaryArray, auxiliaryArray.length, steps);
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
+  Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
 function bottomUpSort(items, n, steps) {
@@ -56,7 +56,7 @@ function bottomUpMerge(items, left, right, end, steps) {
   });
 }
 
-async function Vizualize(
+async function Visualize(
   array,
   setArray,
   steps,

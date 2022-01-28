@@ -26,7 +26,7 @@ export default function HeapSortMaxHeap(
     lastElement--;
   }
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
+  Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
 const buildMaxHeap = (array, steps) => {
@@ -71,7 +71,7 @@ const heapify = async (heap, i, max, steps) => {
   }
 };
 
-async function Vizualize(
+async function Visualize(
   array,
   setArray,
   steps,

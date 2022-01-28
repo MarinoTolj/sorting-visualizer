@@ -33,10 +33,10 @@ export default function RadixSortLSD(
     }
   }
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
+  Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
-async function Vizualize(
+async function Visualize(
   array,
   setArray,
   steps,

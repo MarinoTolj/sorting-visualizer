@@ -30,10 +30,10 @@ export default function SelectionSort(
     }
   }
 
-  Vizualize(array, setArray, steps, setSteps, sortSpeed, setIsRunning);
+  Visualize(array, setArray, steps, setSteps, sortSpeed, setIsRunning);
 }
 
-async function Vizualize(
+async function Visualize(
   array,
   setArray,
   steps,

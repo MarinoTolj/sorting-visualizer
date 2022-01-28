@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 
 const DEFAULT = "rgba(233,236,239,255)";
 const RED = "rgba(220,53,69,255)";

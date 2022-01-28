@@ -13,7 +13,7 @@ export default function QuickSort(
 
   quickSort(array2, 0, array2.length - 1, steps);
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
+  Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
 function quickSort(arr, first, last, steps) {
@@ -51,7 +51,7 @@ function quickSort(arr, first, last, steps) {
   }
 }
 
-async function Vizualize(
+async function Visualize(
   array,
   setArray,
   steps,

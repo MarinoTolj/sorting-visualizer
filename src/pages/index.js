@@ -4,13 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Toggle from "../components/toggle";
 import { useState, useEffect } from "react";
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
-import { graphql } from "gatsby";
 import * as styles from "../styles/sortingVisualizer.module.css";
 
 const MIN_VALUE_OF_ARRAY = 5;
 const MAX_VALUE_OF_ARRAY = 200;
 
-export default function Index({ data }) {
+export default function Index() {
   const [toggle, setToggle] = useState(false);
   const [arraySize, setArraySize] = useState(32);
   const [array, setArray] = useState([]);
@@ -18,7 +17,6 @@ export default function Index({ data }) {
   const [description, setDescription] = useState("");
   const [secondaryDescription, setSecondaryDescription] = useState("");
   const [className, setClassName] = useState(styles.sectioncontainer);
-  console.log(data.allMarkdownRemark.nodes[0].frontmatter.title);
 
   function handleReset() {
     GenerateRandomArray();
@@ -56,9 +54,8 @@ export default function Index({ data }) {
         color: COLUMNS_COLOR,
       });
     }
-    array.push({ value: 200, color: "red" });
+
     setArray([...array]);
-    secondaryArray.push({ value: 200, color: "red" });
     setSecondaryArray([...secondaryArray]);
   }
 
@@ -110,16 +107,3 @@ export default function Index({ data }) {
     </div>
   );
 }
-
-export const pageQuery = graphql`
-  query MyQuery {
-    allMarkdownRemark {
-      nodes {
-        html
-        frontmatter {
-          title
-        }
-      }
-    }
-  }
-`;

@@ -9,25 +9,29 @@ export default function InsertionSort(
   setSteps
 ) {
   let temp = 0;
-
-  let array2 = [...array];
+  //temporary array used to sort but not to render it on screen. It only helps to determine steps necessary to sort array.
+  let secondaryArray = [...array];
+  //array of objects which holds the indices of elements to be sorted
   let steps = [];
 
-  for (let i = 1; i < array2.length; i++) {
+  for (let i = 1; i < secondaryArray.length; i++) {
     let j = i;
 
-    while (j > 0 && array2[j - 1].value > array2[j].value) {
-      temp = array2[j];
-      array2[j] = array2[j - 1];
-      array2[j - 1] = temp;
+    while (j > 0 && secondaryArray[j - 1].value > secondaryArray[j].value) {
+      temp = secondaryArray[j];
+      secondaryArray[j] = secondaryArray[j - 1];
+      secondaryArray[j - 1] = temp;
+      // pushing j j-1 indices to x and y respectivly to remember that values at those indices needs to be swapped.
       steps.push({ x: j, y: j - 1 });
+
       j--;
     }
   }
-  Vizualize(array, setArray, steps, setSteps, sortSpeed, setIsRunning);
+
+  Visualize(array, setArray, steps, setSteps, sortSpeed, setIsRunning);
 }
 
-async function Vizualize(
+async function Visualize(
   array,
   setArray,
   steps,
@@ -36,22 +40,24 @@ async function Vizualize(
   setIsRunning
 ) {
   let temp = 0;
+  //function to disable all other buttons because it leads to problems
   setIsRunning(true);
 
   for (let i = 0; i < steps.length; i++) {
-    array[steps[i].y].color = "red";
+    array[steps[i].x].color = "red";
 
-    temp = array[steps[i].x].value;
-    array[steps[i].x].value = array[steps[i].y].value;
-    array[steps[i].y].value = temp;
+    temp = array[steps[i].x];
+    array[steps[i].x] = array[steps[i].y];
+    array[steps[i].y] = temp;
 
     setArray([...array]);
     await sleep(sortSpeed);
 
     array[steps[i].y].color = COLUMNS_COLOR;
+
     setSteps({ total: steps.length, done: i + 1 });
   }
-
+  //last re-render to update last elements which were swapped
   setArray([...array]);
 
   setIsRunning(false);

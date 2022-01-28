@@ -14,7 +14,7 @@ export default function mergeSortRecursive(
 
   SplitMerge(tempArray, 0, array.length - 1, auxiliaryArray, steps);
 
-  Vizualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
+  Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
 function SplitMerge(mainArray, startIndex, endIndex, auxiliaryArray, steps) {
@@ -59,7 +59,7 @@ function Merge(
   }
 }
 
-async function Vizualize(
+async function Visualize(
   array,
   setArray,
   steps,
