@@ -10,9 +10,9 @@ export default function mergeSortRecursive(
 ) {
   let steps = [];
   let auxiliaryArray = [...array];
-  let tempArray = [...array];
+  let secondaryArray = [...array];
 
-  SplitMerge(tempArray, 0, array.length - 1, auxiliaryArray, steps);
+  SplitMerge(secondaryArray, 0, array.length - 1, auxiliaryArray, steps);
 
   Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
@@ -34,25 +34,25 @@ function Merge(
   auxiliaryArray,
   steps
 ) {
-  let k = startIndex;
-  let i = startIndex;
-  let j = middleIndex + 1;
+  let k = startIndex,
+    i = startIndex,
+    j = middleIndex + 1;
 
   while (i <= middleIndex && j <= endIndex) {
+    //x and y values are indices which we are comparing, and z denotes value which needs to put to q index
     if (auxiliaryArray[i].value <= auxiliaryArray[j].value) {
       steps.push({ x: i, y: j, q: k, z: auxiliaryArray[i].value });
+
       mainArray[k++] = auxiliaryArray[i++];
     } else {
       steps.push({ x: i, y: j, q: k, z: auxiliaryArray[j].value });
       mainArray[k++] = auxiliaryArray[j++];
     }
   }
-
   while (i <= middleIndex) {
     steps.push({ x: i, y: j, q: k, z: auxiliaryArray[i].value });
     mainArray[k++] = auxiliaryArray[i++];
   }
-
   while (j <= endIndex) {
     steps.push({ x: i, y: j, q: k, z: auxiliaryArray[j].value });
     mainArray[k++] = auxiliaryArray[j++];
@@ -68,10 +68,10 @@ async function Visualize(
   setSteps
 ) {
   setIsRunning(true);
-
   for (let i = 0; i < steps.length; i++) {
     array[steps[i].x].color = "red";
-    if (array[steps[i].y] !== undefined) {
+    //sometimes values of y overshoot the size of array, so we make sure that no undefined errors occur
+    if (steps[i].y < array.length) {
       array[steps[i].y].color = "red";
     }
 
@@ -81,11 +81,11 @@ async function Visualize(
     await sleep(sortSpeed);
 
     array[steps[i].x].color = COLUMNS_COLOR;
-    if (array[steps[i].y] !== undefined) {
+
+    if (steps[i].y < array.length) {
       array[steps[i].y].color = COLUMNS_COLOR;
     }
     setSteps({ total: steps.length, done: i + 1 });
   }
-
   setIsRunning(false);
 }

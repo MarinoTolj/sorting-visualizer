@@ -12,18 +12,22 @@ export default function BubbleSort(
   let temp = 0;
   //checks if any 2 elements are swapped, if it is true do while loop continues, otherwise loop stops because array is sorted
   let swapped = false;
-  let array2 = [...array];
+  let secondaryArray = [...array];
   let steps = [];
 
   do {
     swapped = false;
-    for (let j = 0; j < array2.length - 1; j++) {
+    for (let j = 0; j < secondaryArray.length - 1; j++) {
+      //pushing j and j+1 to x and y, and q to -1, which denotes that those values only need to be colored and not swapped
       steps.push({ x: j, y: j + 1, q: -1 });
-      if (array2[j].value > array2[j + 1].value) {
-        temp = array2[j];
-        array2[j] = array2[j + 1];
-        array2[j + 1] = temp;
+
+      if (secondaryArray[j].value > secondaryArray[j + 1].value) {
+        temp = secondaryArray[j];
+        secondaryArray[j] = secondaryArray[j + 1];
+        secondaryArray[j + 1] = temp;
+        //replaces last pushed object with new, but only difference is that q is now 1, which denotes that those values (which are located at j j+1 indices) need to be swapped
         steps[steps.length - 1] = { x: j, y: j + 1, q: 1 };
+
         swapped = true;
       }
     }
@@ -48,6 +52,7 @@ async function Visualize(
     array[steps[i].x].color = "red";
     array[steps[i].y].color = "red";
 
+    //if q is not -1 that means that those values need to be swapped
     if (steps[i].q !== -1) {
       temp = array[steps[i].x].value;
       array[steps[i].x].value = array[steps[i].y].value;

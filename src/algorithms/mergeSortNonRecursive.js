@@ -8,11 +8,11 @@ export default async function mergeSortNonRecursive(
   setIsRunning,
   setSteps
 ) {
-  let auxiliaryArray = [...array];
+  let secondaryArray = [...array];
 
   let steps = [];
 
-  bottomUpSort(auxiliaryArray, auxiliaryArray.length, steps);
+  bottomUpSort(secondaryArray, secondaryArray.length, steps);
 
   Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
@@ -37,25 +37,22 @@ function bottomUpMerge(items, left, right, end, steps) {
     m = right,
     currentSort = [],
     j;
-
   for (j = left; j < end; j++) {
+    //we are comparing values at n and m indices and depends which one is smaller we put that value at correct place
     if (n < right && (m >= end || items[n].value < items[m].value)) {
       currentSort.push(items[n]);
-      steps.push({ x: n, y: m - 1, q: items[n].value });
-
+      steps.push({ x: n, y: m, q: items[n].value });
       n++;
     } else {
       currentSort.push(items[m]);
-      steps.push({ x: m, y: m, q: items[m].value });
+      steps.push({ x: m, y: n, q: items[m].value });
       m++;
     }
   }
-
   currentSort.map(function (item, i) {
     return (items[left + i] = item);
   });
 }
-
 async function Visualize(
   array,
   setArray,
@@ -66,9 +63,12 @@ async function Visualize(
 ) {
   setIsRunning(true);
 
-  for (let i = array.length; i < steps.length; i++) {
+  for (let i = 0; i < steps.length; i++) {
     array[steps[i].x].color = "red";
-    array[steps[i].y].color = "red";
+    //sometimes values of y overshoot the size of array, so we make sure that no undefined errors occur
+    if (steps[i].y < array.length) {
+      array[steps[i].y].color = "red";
+    }
 
     array[steps[i].x].value = steps[i].q;
 
@@ -76,12 +76,11 @@ async function Visualize(
     await sleep(sortSpeed);
 
     array[steps[i].x].color = COLUMNS_COLOR;
-    array[steps[i].y].color = COLUMNS_COLOR;
-
+    if (steps[i].y < array.length) {
+      array[steps[i].y].color = COLUMNS_COLOR;
+    }
     setSteps({ total: steps.length, done: i + 1 });
   }
-
   setArray([...array]);
-
   setIsRunning(false);
 }

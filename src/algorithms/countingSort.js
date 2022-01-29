@@ -30,15 +30,19 @@ export default async function CountingSort(
   }
 
   for (i = 0; i < len; i++) {
-    steps.push({ x: i, y: -1, q: -1 });
+    //creating count array and storing indices of array in x
+    steps.push({ x: i, q: -1 });
 
     count[array[i].value]++;
   }
 
   for (i = minValue; i <= maxValue; i++) {
-    steps.push({ x: j, y: i, q: -1 });
+    //looking for value which appeard in original array
+    steps.push({ x: j, q: -1 });
+
     while (count[i] > 0) {
-      steps.push({ x: j, y: i, q: 1 });
+      //value is found and we are storing its index to x and value to q
+      steps.push({ x: j, q: i });
       j++;
       count[i]--;
     }
@@ -59,9 +63,9 @@ async function Visualize(
 
   for (let i = 0; i < steps.length; i++) {
     array[steps[i].x].color = "red";
-
+    //if q is different from -1 it means that we need to update our array
     if (steps[i].q !== -1) {
-      array[steps[i].x].value = steps[i].y;
+      array[steps[i].x].value = steps[i].q;
     }
 
     setArray([...array]);

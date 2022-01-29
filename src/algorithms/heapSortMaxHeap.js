@@ -9,34 +9,27 @@ export default function HeapSortMaxHeap(
   setSteps
 ) {
   let steps = [];
-  let array2 = [...array];
+  let secondaryArray = [...array];
 
-  buildMaxHeap(array2, steps);
+  buildMaxHeap(secondaryArray, steps);
 
-  let lastElement = array2.length - 1;
+  let lastElement = secondaryArray.length - 1;
   let temporary;
   while (lastElement > 0) {
+    //index of max value is at 0th index of array and we swapped it with last element
     steps.push({ x: 0, y: lastElement });
-    temporary = array2[0];
-    array2[0] = array2[lastElement];
-    array2[lastElement] = temporary;
 
-    heapify(array2, 0, lastElement, steps);
+    temporary = secondaryArray[0];
+    secondaryArray[0] = secondaryArray[lastElement];
+    secondaryArray[lastElement] = temporary;
+
+    heapify(secondaryArray, 0, lastElement, steps);
 
     lastElement--;
   }
 
   Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
-
-const buildMaxHeap = (array, steps) => {
-  let i = Math.floor(array.length / 2 - 1);
-
-  while (i >= 0) {
-    heapify(array, i, array.length, steps);
-    i--;
-  }
-};
 
 const heapify = async (heap, i, max, steps) => {
   let index;
@@ -61,7 +54,7 @@ const heapify = async (heap, i, max, steps) => {
     if (index === i) {
       return;
     }
-
+    //swapping new max value
     steps.push({ x: i, y: index });
     temp = heap[i];
     heap[i] = heap[index];
@@ -98,3 +91,12 @@ async function Visualize(
 
   setIsRunning(false);
 }
+
+const buildMaxHeap = (array, steps) => {
+  let i = Math.floor(array.length / 2 - 1);
+
+  while (i >= 0) {
+    heapify(array, i, array.length, steps);
+    i--;
+  }
+};

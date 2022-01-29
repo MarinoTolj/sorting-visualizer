@@ -95,8 +95,8 @@ export const algorithmsDescription = {
       <br /> Average-case time performance Θ(nlogn)
       <br /> Worst-case space complexity O(n)
       <br />
-      <a href="https://en.wikipedia.org/wiki/Quicksort#Worst-case_analysis">
-        https://en.wikipedia.org/wiki/Quicksort#Worst-case_analysis
+      <a href="https://en.wikipedia.org/wiki/Quicksort">
+        https://en.wikipedia.org/wiki/Quicksort
       </a>
     </p>
   ),

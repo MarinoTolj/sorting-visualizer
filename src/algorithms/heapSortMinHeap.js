@@ -9,21 +9,22 @@ export default function HeapSortMaxHeap(
   setSteps
 ) {
   let steps = [];
-  let array2 = [...array];
+  let secondaryArray = [...array];
 
-  buildMinHeap(array2, steps);
+  buildMinHeap(secondaryArray, steps);
 
-  let lastElement = array2.length - 1;
+  let lastElement = secondaryArray.length - 1;
   let temporary;
 
   while (lastElement > 0) {
+    //index of min value is at 0th index of array and we swapped it with last element
     steps.push({ x: 0, y: lastElement });
 
-    temporary = array2[0];
-    array2[0] = array2[lastElement];
-    array2[lastElement] = temporary;
+    temporary = secondaryArray[0];
+    secondaryArray[0] = secondaryArray[lastElement];
+    secondaryArray[lastElement] = temporary;
 
-    heapify(array2, 0, lastElement, steps);
+    heapify(secondaryArray, 0, lastElement, steps);
 
     lastElement--;
   }
@@ -31,40 +32,28 @@ export default function HeapSortMaxHeap(
   Visualize(array, setArray, steps, sortSpeed, setIsRunning, setSteps);
 }
 
-const buildMinHeap = (array, steps) => {
-  let i = Math.floor(array.length / 2 - 1);
-
-  while (i >= 0) {
-    heapify(array, i, array.length, steps);
-    i--;
-  }
-};
-
 const heapify = async (heap, i, max, steps) => {
   let index;
   let leftChild;
   let rightChild;
   let temp;
+  index = i;
 
   while (i < max) {
-    index = i;
-
     leftChild = 2 * i + 1;
     rightChild = leftChild + 1;
-
     if (leftChild < max && heap[leftChild].value < heap[index].value) {
       index = leftChild;
     }
-
     if (rightChild < max && heap[rightChild].value < heap[index].value) {
       index = rightChild;
     }
-
     if (index === i) {
       return;
     }
-
+    //swapping new min value
     steps.push({ x: i, y: index });
+
     temp = heap[i];
     heap[i] = heap[index];
     heap[index] = temp;
@@ -72,7 +61,6 @@ const heapify = async (heap, i, max, steps) => {
     i = index;
   }
 };
-
 async function Visualize(
   array,
   setArray,
@@ -94,11 +82,20 @@ async function Visualize(
 
     setArray([...array]);
     await sleep(sortSpeed);
+
     array[steps[i].x].color = COLUMNS_COLOR;
     array[steps[i].y].color = COLUMNS_COLOR;
 
     setSteps({ total: steps.length, done: i + 1 });
   }
-
   setIsRunning(false);
 }
+
+const buildMinHeap = (array, steps) => {
+  let i = Math.floor(array.length / 2 - 1);
+
+  while (i >= 0) {
+    heapify(array, i, array.length, steps);
+    i--;
+  }
+};

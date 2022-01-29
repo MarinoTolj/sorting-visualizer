@@ -9,25 +9,27 @@ export default function RadixSortLSD(
   setSteps
 ) {
   const maxLength = largestNum(array);
-  let array2 = [...array];
+  let secondaryArray = [...array];
   let steps = [];
 
   for (let i = 0; i < maxLength; i++) {
     let buckets = Array.from({ length: 10 }, () => []);
+    //calculating where each values goes to what bucket and storing its index in x
+    for (let j = 0; j < secondaryArray.length; j++) {
+      let num = getDigit(secondaryArray[j], i);
 
-    for (let j = 0; j < array2.length; j++) {
-      let num = getDigit(array2[j], i);
-      steps.push({ x: j, y: -1 });
       if (num !== undefined) {
-        buckets[num].push(array2[j]);
+        buckets[num].push(secondaryArray[j]);
+        steps.push({ x: j, y: -1 });
       }
     }
 
+    //reconstruction of array from buckets
     let g = 0;
     for (let k = 0; k < 10; k++) {
       for (let l = 0; l < buckets[k].length; l++) {
         steps.push({ x: g, y: buckets[k][l].value });
-        array2[g] = buckets[k][l];
+        secondaryArray[g] = buckets[k][l];
         g++;
       }
     }
@@ -63,6 +65,7 @@ async function Visualize(
   setIsRunning(false);
 }
 
+//function to get digit at certain digits place
 const getDigit = (num, digitsPlace) => {
   const stringNumber = String(num.value);
   let end = stringNumber.length - 1;
@@ -72,6 +75,7 @@ const getDigit = (num, digitsPlace) => {
   else return digit;
 };
 
+//number of digits of largest number in array
 const largestNum = (array) => {
   let largest = "0";
 
