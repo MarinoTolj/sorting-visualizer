@@ -16,7 +16,6 @@ export default function Index() {
   const [secondaryArray, setSecondaryArray] = useState([]);
   const [description, setDescription] = useState("");
   const [secondaryDescription, setSecondaryDescription] = useState("");
-  const [className, setClassName] = useState(styles.sectioncontainer);
 
   function handleReset() {
     GenerateRandomArray();
@@ -25,12 +24,6 @@ export default function Index() {
   useEffect(() => {
     handleReset();
   }, [arraySize]);
-
-  useEffect(() => {
-    if (toggle) {
-      setClassName(styles.doublesectioncontainer);
-    }
-  }, [toggle]);
 
   function GenerateRandomArray() {
     let array = [];
@@ -96,7 +89,7 @@ export default function Index() {
         />
       )}
 
-      <div className={className}>
+      <div className={styles.sectioncontainer}>
         {description && (
           <section className={styles.section}>{description}</section>
         )}

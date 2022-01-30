@@ -69,9 +69,7 @@ export default function SortingVisualizer({
         setBucketSize={setBucketSize}
         arraySize={arraySize}
       />
-
       {children}
-
       <Inputs
         arraySize={arraySize}
         setArraySize={setArraySize}
