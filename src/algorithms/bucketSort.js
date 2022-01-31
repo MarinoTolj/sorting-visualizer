@@ -1,6 +1,5 @@
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import { sleep } from "../components/sortingVisualizer";
-import InsertionSort from "./insertionSort";
 
 export default function BucketSort(
   array,

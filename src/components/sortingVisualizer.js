@@ -7,7 +7,6 @@ import ArrayList from "./arrayList";
 import Inputs from "./inputs";
 import Buttons from "./buttons";
 import ProgressBar from "./progressBar";
-import { graphql } from "gatsby";
 
 export const COLUMNS_COLOR = "rgba(13,110,253,255)";
 

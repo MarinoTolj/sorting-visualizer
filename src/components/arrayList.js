@@ -1,10 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import * as styles from "../styles/sortingVisualizer.module.css";
-import useResizeObserver from "use-resize-observer";
 
 export default function ArrayList({ array, description, arraySize }) {
-  const { ref, width = 1, height = 1 } = useResizeObserver();
   const [arrayWidth, setArrayWidth] = useState(3);
 
   useEffect(() => {
@@ -16,7 +14,7 @@ export default function ArrayList({ array, description, arraySize }) {
   }, [arraySize, window.innerWidth]);
 
   return (
-    <div ref={ref} className={styles.arraycontainer}>
+    <div className={styles.arraycontainer}>
       {array.map((element, index) => (
         <div
           key={index}

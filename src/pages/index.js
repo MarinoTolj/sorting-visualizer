@@ -5,6 +5,7 @@ import Toggle from "../components/toggle";
 import { useState, useEffect } from "react";
 import { COLUMNS_COLOR } from "../components/sortingVisualizer";
 import * as styles from "../styles/sortingVisualizer.module.css";
+import { Helmet } from "react-helmet";
 
 const MIN_VALUE_OF_ARRAY = 5;
 const MAX_VALUE_OF_ARRAY = 200;
@@ -64,7 +65,6 @@ export default function Index() {
       <h1 style={{ display: "flex", justifyContent: "center" }}>
         Sorting Visualizer
       </h1>
-      {/* <Toggle setToggle={setToggle} /> */}
       <SortingVisualizer
         array={array}
         setArray={setArray}
@@ -97,6 +97,12 @@ export default function Index() {
           <section className={styles.section}>{secondaryDescription}</section>
         ) : null}
       </div>
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SortingVisualizer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
     </div>
   );
 }

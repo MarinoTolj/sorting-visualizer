@@ -7,7 +7,6 @@ import QuickSort from "./quickSort";
 import HeapSortMaxHeap from "./heapSortMaxHeap";
 import HeapSortMinHeap from "./heapSortMinHeap";
 import RadixSortLSD from "./radixSortLSD";
-import RadixSortMSD from "./radixSortMSD";
 import BucketSort from "./bucketSort";
 import CountingSort from "./countingSort";
 import { algorithmsDescription } from "./description";
@@ -73,10 +72,7 @@ export default function AlgorithmChoice(
       setDescription(algorithmsDescription.RadixSort);
       RadixSortLSD(array, setArray, sortSpeed, setIsRunning, setSteps);
       break;
-    case "Radix sort msd":
-      setDescription(algorithmsDescription.RadixSort);
-      RadixSortMSD(array, setArray, sortSpeed, setIsRunning, setSteps);
-      break;
+
     case "Counting sort":
       setDescription(algorithmsDescription.CountingSort);
       CountingSort(array, setArray, sortSpeed, setIsRunning, setSteps);
