@@ -6,12 +6,8 @@ export default function ArrayList({ array, arraySize }) {
   const [arrayWidth, setArrayWidth] = useState(3);
 
   useEffect(() => {
-    if (window.innerWidth > 1280) {
-      setArrayWidth((1280 - arraySize - 10) / arraySize);
-    } else {
-      setArrayWidth((window.innerWidth - arraySize - 20) / arraySize);
-    }
-  }, [arraySize, window.innerWidth]);
+    setArrayWidth((1280 - arraySize - 10) / arraySize);
+  }, [arraySize]);
 
   return (
     <div className={styles.arraycontainer}>
