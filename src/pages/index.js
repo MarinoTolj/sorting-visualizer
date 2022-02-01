@@ -71,7 +71,6 @@ export default function Index() {
         handleReset={handleReset}
         arraySize={arraySize}
         setArraySize={setArraySize}
-        description={description}
         setDescription={setDescription}
       >
         <Toggle setToggle={setToggle} />
@@ -84,7 +83,6 @@ export default function Index() {
           handleReset={handleReset}
           arraySize={arraySize}
           setArraySize={setArraySize}
-          description={secondaryDescription}
           setDescription={setSecondaryDescription}
         />
       )}

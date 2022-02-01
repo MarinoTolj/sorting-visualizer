@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import * as styles from "../styles/sortingVisualizer.module.css";
 
-export default function ArrayList({ array, description, arraySize }) {
+export default function ArrayList({ array, arraySize }) {
   const [arrayWidth, setArrayWidth] = useState(3);
 
   useEffect(() => {
@@ -26,9 +26,6 @@ export default function ArrayList({ array, description, arraySize }) {
           }}
         ></div>
       ))}
-      {/* {description && (
-        <section className={styles.sectioncontainer}>{description}</section>
-      )} */}
     </div>
   );
 }

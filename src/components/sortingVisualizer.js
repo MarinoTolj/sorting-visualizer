@@ -16,7 +16,6 @@ export default function SortingVisualizer({
   handleReset,
   arraySize,
   setArraySize,
-  description,
   setDescription,
   children,
 }) {
@@ -76,11 +75,7 @@ export default function SortingVisualizer({
         setSortSpeed={setSortSpeed}
         isRunning={isRunning}
       />
-      <ArrayList
-        array={array}
-        description={description}
-        arraySize={arraySize}
-      />
+      <ArrayList array={array} arraySize={arraySize} />
     </div>
   );
 }
