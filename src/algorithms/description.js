@@ -10,9 +10,9 @@ export const algorithmsDescription = {
       comparison sort, is named for the way smaller or larger elements "bubble"
       to the top of the list.
       <br /> Worst-case time performance O(n<sup>2</sup>)
-      <br /> Best-case time performance Ω(n)
-      <br /> Average-case time performance Θ(n<sup>2</sup>)
-      <br /> Worst-case space complexity O(n)
+      <br /> Best-case time performance O(n)
+      <br /> Average-case time performance O(n<sup>2</sup>)
+      <br /> Worst-case space complexity O(1)
       <br />
       <a href="https://en.wikipedia.org/wiki/Bubble_sort">
         https://en.wikipedia.org/wiki/Bubble_sort
@@ -26,9 +26,9 @@ export const algorithmsDescription = {
       lists than more advanced algorithms such as quicksort, heapsort, or merge
       sort.
       <br /> Worst-case time performance O(n<sup>2</sup>)
-      <br /> Best-case time performance Ω(n)
-      <br /> Average-case time performance Θ(n<sup>2</sup>)
-      <br /> Worst-case space complexity O(n)
+      <br /> Best-case time performance O(n)
+      <br /> Average-case time performance O(n<sup>2</sup>)
+      <br /> Worst-case space complexity O(1)
       <br />
       <a href="https://en.wikipedia.org/wiki/Insertion_sort">
         https://en.wikipedia.org/wiki/Insertion_sort
@@ -47,9 +47,9 @@ export const algorithmsDescription = {
       exchanging (swapping) it with the leftmost unsorted element (putting it in
       sorted order), and moving the sublist boundaries one element to the right.
       <br /> Worst-case time performance O(n<sup>2</sup>)
-      <br /> Best-case time performance Ω(n<sup>2</sup>)
-      <br /> Average-case time performance Θ(n<sup>2</sup>)
-      <br /> Worst-case space complexity O(n)
+      <br /> Best-case time performance O(n<sup>2</sup>)
+      <br /> Average-case time performance O(n<sup>2</sup>)
+      <br /> Worst-case space complexity O(1)
       <br />
       <a href="https://en.wikipedia.org/wiki/Selection_sort">
         https://en.wikipedia.org/wiki/Selection_sort
@@ -67,8 +67,8 @@ export const algorithmsDescription = {
       detailed description and analysis of bottom-up merge sort appeared in a
       report by Goldstine and von Neumann as early as 1948.
       <br /> Worst-case time performance O(nlogn)
-      <br /> Best-case time performance Ω(nlogn)
-      <br /> Average-case time performance Θ(nlogn)
+      <br /> Best-case time performance O(nlogn)
+      <br /> Average-case time performance O(nlogn)
       <br /> Worst-case space complexity O(n)
       <br />
       <a href="https://en.wikipedia.org/wiki/Merge_sort">
@@ -91,9 +91,9 @@ export const algorithmsDescription = {
       in-place, requiring small additional amounts of memory to perform the
       sorting.
       <br /> Worst-case time performance O(n<sup>2</sup>)
-      <br /> Best-case time performance Ω(nlogn)
-      <br /> Average-case time performance Θ(nlogn)
-      <br /> Worst-case space complexity O(n)
+      <br /> Best-case time performance O(nlogn)
+      <br /> Average-case time performance O(nlogn)
+      <br /> Worst-case space complexity O(logn)
       <br />
       <a href="https://en.wikipedia.org/wiki/Quicksort">
         https://en.wikipedia.org/wiki/Quicksort
@@ -111,9 +111,9 @@ export const algorithmsDescription = {
       region; rather, heap sort maintains the unsorted region in a heap data
       structure to more quickly find the largest element in each step.
       <br /> Worst-case time performance O(nlogn)
-      <br /> Best-case time performance Ω(nlogn)
-      <br /> Average-case time performance Θ(nlogn)
-      <br /> Worst-case space complexity O(n)
+      <br /> Best-case time performance O(nlogn)
+      <br /> Average-case time performance O(nlogn)
+      <br /> Worst-case space complexity O(1)
       <br />
       <a href="https://en.wikipedia.org/wiki/Heapsort">
         https://en.wikipedia.org/wiki/Heapsort
@@ -132,9 +132,10 @@ export const algorithmsDescription = {
       comparison sort algorithm. The computational complexity depends on the
       algorithm used to sort each bucket, the number of buckets to use, and
       whether the input is uniformly distributed.
-      <br /> Worst-case time performance O(n*logn),
-      <br /> Worst-case space complexity O(n+n<sup>2</sup>/k+k),
+      <br /> Worst-case time performance O(n<sup>2</sup>),
+      <br /> Avarage-case time complexity O(n+n<sup>2</sup>/k+k),
       <br /> where k is the number of buckets
+      <br /> Best-case time performance O(n+k)
       <br /> Worst-case space complexity O(n+k)
       <br />
       <a href="https://en.wikipedia.org/wiki/Bucket_sort">
